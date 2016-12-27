@@ -14,7 +14,7 @@ public class SpringMybatisConfig {
     public PropertyPlaceholderConfigurer propertyPlaceholderConfigurer()
 {
     PropertyPlaceholderConfigurer propertyPlaceholderConfigurer=new PropertyPlaceholderConfigurer();
-    propertyPlaceholderConfigurer.setLocation();
+//    propertyPlaceholderConfigurer.setLocation();
     return propertyPlaceholderConfigurer;
 }
 }
