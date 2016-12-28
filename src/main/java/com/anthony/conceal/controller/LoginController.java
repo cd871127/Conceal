@@ -3,8 +3,10 @@ package com.anthony.conceal.controller;
 import com.anthony.conceal.dao.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,11 +25,9 @@ public class LoginController {
     @RequestMapping(value = "login.do",method = POST)
     public String userLogin(HttpServletRequest request)
     {
-        System.out.println("login");
-        String s=request.getParameter("username");
-        String password=request.getParameter("password");
-        System.out.println(s);
-        System.out.println(password);
+        String userName=request.getParameter("username");
+        String passWord=request.getParameter("password");
+        System.out.println(userMapper.userLogin(userName));
         return "/test";
     }
 }

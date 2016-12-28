@@ -8,6 +8,5 @@
         select pass_word from user_tbl where user_name=#{username}
     </select>
 
-    <!--<select id="getUserByUserName" parameterType="java.lang.String" resultType="userDto"-->
 
 </mapper>

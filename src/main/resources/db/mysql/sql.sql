@@ -1,4 +1,3 @@
-select * from USER_TBL;
 
-update USER_TBL set pass_word='abc';
 
+select * from account_tbl;
