@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd"
+>
 
+<!--用Configuration注解的时候不能要上面的-->
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+       <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+       <!--xsi:schemaLocation="http://www.springframework.org/schema/beans">-->
 
     <!--MapperScannerConfigurer会导致context:property-placeholder失效-->
     <!--<context:property-placeholder location="classpath:config/datasource.properties"/>-->
     <!--读取配置文件-->
+
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>classpath*:config/database.properties</value>
+                <value>classpath:config/database.properties</value>
             </list>
         </property>
     </bean>
@@ -33,7 +38,7 @@
 
     <!--自动扫描mybatis的接口-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.anthony.conceal.DAO"/>
+        <property name="basePackage" value="com.anthony.conceal.dao"/>
     </bean>
 
     <!--手动指定mybatis的接口-->
