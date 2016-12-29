@@ -18,7 +18,6 @@ public class Main extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest request,HttpServletResponse response)
     {
-        System.out.println(userMapper.userLogin("cd871127"));
     }
 
     public static void main(String[] args) {

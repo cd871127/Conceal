@@ -1,10 +1,11 @@
 package com.anthony.conceal.controller;
 
+import com.anthony.conceal.common.ResObject;
 import com.anthony.conceal.dao.UserMapper;
 import com.anthony.conceal.dto.UserDTO;
+import com.anthony.conceal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,24 +22,28 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class LoginController {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "login.do", method = POST)
     @ResponseBody
-    public Map<String, String> userLogin(@RequestBody UserDTO userDTO) {
-        String pwd = userMapper.userLogin(userDTO.getUserName());
+    public ResObject userLogin(UserDTO userDTO) {
+        String userName = userDTO.getUserName();
+        String passWord = userDTO.getPassWord();
+        userDTO = userService.userLogin(userName);
         String message;
-        if (null == pwd) {
-            //没有用户
-            message = "不存在用户" + userDTO.getUserName();
+        String code;
+
+        if (null != userDTO && userDTO.getPassWord().equals(passWord)) {
+            message = "登录成功";
+            code = "00";
         } else {
-            if (pwd.equals(userDTO.getPassWord())) {
-                message = "ok";
-            } else {
-                message = "密码错误";
-            }
+            message = "登录失败";
+            code = "01";
         }
         Map<String, String> res = new HashMap<>();
         res.put("res", message);
-
-        return res;
+        ResObject resObject = new ResObject.ResObjectBuilder().code(code).content(res).message(message).build();
+        return resObject;
     }
 }

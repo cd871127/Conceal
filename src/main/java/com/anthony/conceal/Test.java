@@ -14,6 +14,5 @@ public class Test {
     private UserMapper userMapper;
 
     public void print() {
-        System.out.println(userMapper.userLogin("cd871127"));
     }
 }

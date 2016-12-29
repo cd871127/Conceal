@@ -1,15 +1,17 @@
 /**
- * Created by Anthony on 2016/12/27.
+ * Created by Anthony on 2016/12/29.
  */
 
-function login() {
+function register() {
     $.ajax({
         cache: true,
         type: "POST",
-        url: "/login/login.do",
+        url: "/register/register.do",
         data: {
             userName: $('#userName').val(),
-            passWord: $('#passWord').val()
+            passWord: $('#passWord').val(),
+            eMail: $('#eMail').val(),
+            telephone: $('#telephone').val()
         },
         async: false,
         success: function (res) {
@@ -27,9 +29,3 @@ function login() {
         }
     });
 }
-
-function openRegisterPage()
-{
-    location.href="/register/register.do";
-}
-

@@ -13,14 +13,14 @@
     <title>Conceal</title>
 </head>
 <body>
-<form method="post">
     user name:
-    <input id="username" type="text" name="username"/>
-    <br>
+    <input id="userName" type="text"/>
+    <br/>
     pass word:
-    <input id="password" type="password" name="password"/>
-    <button onclick="loginFunc()">登录</button>
-</form>
+    <input id="passWord" type="password"/> <br/>
+    <label id="errorMessage" hidden></label>
+    <button onclick="login()">登录</button>  <button onclick="openRegisterPage()">注册</button><br/>
+
 
 </body>
 </html>
