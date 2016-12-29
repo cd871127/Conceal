@@ -17,4 +17,11 @@ public class UserService {
     public UserDTO userLogin(String userName) {
         return userMapper.getUserDTObyUserName(userName);
     }
+
+    public boolean userRegister(UserDTO userDTO) {
+        if (null == userMapper.getUserDTObyUserName(userDTO.getUserName()) && userMapper.addUser(userDTO) == 1) {
+            return true;
+        }
+        return false;
+    }
 }

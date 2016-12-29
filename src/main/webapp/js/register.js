@@ -16,9 +16,7 @@ function register() {
         async: false,
         success: function (res) {
             if (res.code == '01') {
-                var messageLabel = $('#errorMessage');
-                messageLabel.text(res.message);
-                messageLabel.show();
+                alert(res.message);
             }
             else if (res.code == '00') {
                 alert(res.message);

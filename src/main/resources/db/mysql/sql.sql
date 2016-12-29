@@ -1,3 +1,3 @@
 
 
-select * from account_tbl;
+select * from user_tbl;

@@ -1,11 +1,14 @@
 package com.anthony.conceal.controller;
 
+import com.anthony.conceal.common.ResObject;
 import com.anthony.conceal.dto.UserDTO;
 import com.anthony.conceal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by CHENDONG239 on 2016-12-29.
@@ -24,10 +27,17 @@ public class RegisterController {
     }
 
     @RequestMapping(value = "/register.do",method = RequestMethod.POST)
-    public String register(UserDTO userDTO)
+    @ResponseBody
+    public ResObject register(UserDTO userDTO)
     {
-        System.out.println("pp");
-        System.out.println(userDTO);
-        return null;
+        String message="注册成功";
+        String code="00";
+        String content="";
+        if(!userService.userRegister(userDTO))
+        {
+            message="注册失败";
+            code="01";
+        }
+        return new ResObject.ResObjectBuilder().code(code).message(message).content(content).build();
     }
 }
