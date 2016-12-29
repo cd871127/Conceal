@@ -4,4 +4,9 @@
               maxTotal="100" maxIdle="30" maxWaitMillis="10000"
               username="cdistc" password="cd123321" driverClassName="com.mysql.cj.jdbc.Driver"
               url="jdbc:mysql://10.20.112.117:3306/conceal?useUnicode=true&amp;characterEncoding=UTF-8"/>
+
+    <Resource name="jndi/Conceal2" auth="Container" type="javax.sql.DataSource"
+              maxTotal="100" maxIdle="30" maxWaitMillis="10000"
+              username="cdistc" password="19871127cD*" driverClassName="com.mysql.cj.jdbc.Driver"
+              url="jdbc:mysql://192.168.239.222:3306/conceal?useUnicode=true&amp;characterEncoding=UTF-8"/>
 </Context>
