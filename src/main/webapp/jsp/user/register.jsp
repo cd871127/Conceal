@@ -8,8 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <script type="text/JavaScript" src="../js/common/jquery-3.1.1.min.js"></script>
-    <script type="text/JavaScript" src="../js/register.js"></script>
+    <script type="text/JavaScript" src="../../js/common/jquery-3.1.1.min.js"></script>
+    <script type="text/JavaScript" src="../../js/user/register.js"></script>
     <title>Register</title>
 </head>
 <body>

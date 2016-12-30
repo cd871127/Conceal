@@ -1,4 +1,4 @@
-package com.anthony.conceal.controller;
+package com.anthony.conceal.controller.user;
 
 import com.anthony.conceal.common.ResObject;
 import com.anthony.conceal.dao.UserMapper;
@@ -18,7 +18,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * Created by Anthony on 2016/12/27.
  */
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/user")
 public class LoginController {
     @Autowired
     private UserMapper userMapper;
@@ -33,7 +33,6 @@ public class LoginController {
         userDTO = userService.userLogin(userName);
         String message;
         String code;
-
         if (null != userDTO && userDTO.getPassWord().equals(passWord)) {
             message = "登录成功";
             code = "00";

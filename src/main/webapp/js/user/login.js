@@ -6,7 +6,7 @@ function login() {
     $.ajax({
         cache: true,
         type: "POST",
-        url: "/login/login.do",
+        url: "/user/login.do",
         data: {
             userName: $('#userName').val(),
             passWord: $('#passWord').val()
@@ -28,8 +28,8 @@ function login() {
     });
 }
 
-function openRegisterPage()
+function jumpToRegister()
 {
-    location.href="/register/register.do";
+    location.href="/user/register.do";
 }
 

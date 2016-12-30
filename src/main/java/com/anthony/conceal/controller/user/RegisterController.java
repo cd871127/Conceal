@@ -1,11 +1,10 @@
-package com.anthony.conceal.controller;
+package com.anthony.conceal.controller.user;
 
 import com.anthony.conceal.common.ResObject;
 import com.anthony.conceal.dto.UserDTO;
 import com.anthony.conceal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by CHENDONG239 on 2016-12-29.
  */
 @Controller
-@RequestMapping("/register")
+@RequestMapping("/user")
 public class RegisterController {
 
     @Autowired
@@ -23,7 +22,7 @@ public class RegisterController {
     @RequestMapping(value = "/register.do",method = RequestMethod.GET)
     public String openRegisterPage()
     {
-        return "register";
+        return "user/register";
     }
 
     @RequestMapping(value = "/register.do",method = RequestMethod.POST)

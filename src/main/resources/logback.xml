@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+        <!--http://aub.iteye.com/blog/1110008-->
+
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <contextName>Conceal</contextName>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!--<filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+            <!--<level>DEBUG</level>-->
+        <!--</filter>-->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd:HH:mm:ss} %-5level %logger - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <!--<appender name="FILE" class="ch.qos.logback.core.FileAppender">-->
+        <!--<file>D:/log/1.log</file>-->
+        <!--<encoder>-->
+            <!--<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
+            <!--<charset>UTF-8</charset>-->
+        <!--</encoder>-->
+    <!--</appender>-->
+
+
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT" />
+        <!--<appender-ref ref="STDOUT" />-->
+    </root>
+
+</configuration>

@@ -9,7 +9,7 @@
 <html>
 <head>
     <script type="text/JavaScript" src="js/common/jquery-3.1.1.min.js"></script>
-    <script type="text/JavaScript" src="js/login.js"></script>
+    <script type="text/JavaScript" src="js/user/login.js"></script>
     <title>Conceal</title>
 </head>
 <body>
@@ -19,7 +19,7 @@
     pass word:
     <input id="passWord" type="password"/> <br/>
     <label id="errorMessage" hidden></label>
-    <button onclick="login()">登录</button>  <button onclick="openRegisterPage()">注册</button><br/>
+    <button onclick="login()">登录</button>  <button onclick="jumpToRegister()">注册</button><br/>
 
 
 </body>

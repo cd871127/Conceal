@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -20,21 +19,21 @@ public class TestController {
     @RequestMapping(value = "/test.do", method = GET)
     public String test(@RequestBody TestDTO testDTO) {
         System.out.println(testDTO);
-        return "/test";
+        return "user/test";
     }
 
     @RequestMapping(value = "/test.do", method = POST)
     public String test2(UserDTO userDTO) {
         System.out.println("print");
         System.out.println(userDTO);
-        return "test";
+        return "user/test";
     }
 
     @RequestMapping(value = "/{userName}",method=GET)
     public String test3(@PathVariable String userName)
     {
         System.out.println(userName);
-        return "test";
+        return "user/test";
     }
 }
 
