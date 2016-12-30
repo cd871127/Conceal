@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
         <!--http://aub.iteye.com/blog/1110008-->
+        <!--http://www.importnew.com/16782.html-->
 
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <contextName>Conceal</contextName>
@@ -13,18 +14,19 @@
             <charset>UTF-8</charset>
         </encoder>
     </appender>
-    <!--<appender name="FILE" class="ch.qos.logback.core.FileAppender">-->
-        <!--<file>D:/log/1.log</file>-->
-        <!--<encoder>-->
-            <!--<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
-            <!--<charset>UTF-8</charset>-->
-        <!--</encoder>-->
-    <!--</appender>-->
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>1.log</file>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
 
 
     <root level="DEBUG">
         <appender-ref ref="STDOUT" />
-        <!--<appender-ref ref="STDOUT" />-->
+        <!--<appender-ref ref="FILE" />-->
     </root>
 
 </configuration>

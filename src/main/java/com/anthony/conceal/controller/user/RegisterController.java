@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by CHENDONG239 on 2016-12-29.
  */
 @Controller
-@RequestMapping("/user")
+@RequestMapping("user")
 public class RegisterController {
 
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/register.do",method = RequestMethod.GET)
+    @RequestMapping(value = "register.do",method = RequestMethod.GET)
     public String openRegisterPage()
     {
         return "user/register";
     }
 
-    @RequestMapping(value = "/register.do",method = RequestMethod.POST)
+    @RequestMapping(value = "register.do",method = RequestMethod.POST)
     @ResponseBody
     public ResObject register(UserDTO userDTO)
     {

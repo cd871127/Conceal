@@ -6,7 +6,7 @@ function register() {
     $.ajax({
         cache: true,
         type: "POST",
-        url: "/user/register.do",
+        url: "user/register.do",
         data: {
             userName: $('#userName').val(),
             passWord: $('#passWord').val(),
