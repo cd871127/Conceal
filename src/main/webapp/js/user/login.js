@@ -20,7 +20,7 @@ function login() {
             }
             else if (res.code == '00') {
                 alert(res.message);
-                location.href="user/success.do";
+                location.href = "user/success.do";
             }
         },
         error: function (request) {
@@ -29,8 +29,7 @@ function login() {
     });
 }
 
-function jumpToRegister()
-{
-    location.href="user/register.do";
+function jumpToRegister() {
+    location.href = "user/register.do";
 }
 

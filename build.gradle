@@ -70,7 +70,7 @@ gretty {
     port = 8888
     contextPath = "/${project.name}"
     servletContainer = 'tomcat8' // or tomcat7
-    scanInterval=1
+    scanInterval = 1
 //    contextConfigFile="G:\\Project\\Conceal\\src\\main\\webapp\\META-INF\\context.xml"
 //    enableNaming = true
 }

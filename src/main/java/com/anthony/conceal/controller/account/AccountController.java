@@ -15,11 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("account")
 public class AccountController {
 
-    @RequestMapping(value = "queryAccount.do",method = RequestMethod.POST)
+    @RequestMapping(value = "queryAccount.do", method = RequestMethod.POST)
     @ResponseBody
-    public ResObject queryAccount(HttpServletRequest request)
-    {
-        int pageSize=Integer.valueOf(request.getParameter("pageSize"));
+    public ResObject queryAccount(HttpServletRequest request) {
+        int pageSize = Integer.valueOf(request.getParameter("pageSize"));
 
         return null;
     }

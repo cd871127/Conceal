@@ -1,3 +1,2 @@
-
-
-select * from user_tbl;
+SELECT *
+FROM user_tbl;

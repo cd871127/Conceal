@@ -39,8 +39,8 @@ public class LoginController {
         if (null != userDTO && userDTO.getPassWord().equals(passWord)) {
             message = "登录成功";
             code = "00";
-            HttpSession session=request.getSession();
-            session.setAttribute("userDTO",userDTO);
+            HttpSession session = request.getSession();
+            session.setAttribute("userDTO", userDTO);
         } else {
             message = "登录失败";
             code = "01";
@@ -51,11 +51,10 @@ public class LoginController {
         return resObject;
     }
 
-    @RequestMapping(value = "success.do",method = GET)
-    public String loginSuccess(HttpServletRequest request)
-    {
-        HttpSession session=request.getSession();
-        UserDTO userDTO=(UserDTO) session.getAttribute("userDTO");
+    @RequestMapping(value = "success.do", method = GET)
+    public String loginSuccess(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        UserDTO userDTO = (UserDTO) session.getAttribute("userDTO");
         System.out.println(userDTO);
         return "account/query_account";
     }

@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="/jsp/common/path.jsp"%>
+<%@ include file="/jsp/common/path.jsp" %>
 <html>
 <head>
     <base href=" <%=basePath%>">
@@ -15,12 +15,14 @@
     <title>Conceal</title>
 </head>
 <body>
-    user name:
-    <input id="userName" type="text"/>
-    <br/>
-    pass word:
-    <input id="passWord" type="password"/> <br/>
-    <label id="errorMessage" hidden></label>
-    <button onclick="login()">登录</button>  <button onclick="jumpToRegister()">注册</button><br/>
+user name:
+<input id="userName" type="text"/>
+<br/>
+pass word:
+<input id="passWord" type="password"/> <br/>
+<label id="errorMessage" hidden></label>
+<button onclick="login()">登录</button>
+<button onclick="jumpToRegister()">注册</button>
+<br/>
 </body>
 </html>

@@ -18,7 +18,8 @@
     </select>
 
     <insert id="addUser" parameterType="userDTO">
-      INSERT INTO user_tbl(user_name, pass_word, e_mail, telephone) VALUES (#{userName},#{passWord},#{eMail},#{telephone})
+        INSERT INTO user_tbl (user_name, pass_word, e_mail, telephone)
+        VALUES (#{userName}, #{passWord}, #{eMail}, #{telephone})
     </insert>
 
 </mapper>

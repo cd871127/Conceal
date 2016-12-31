@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.anthony.conceal.dao.AccountMapper">
 
-<select id="queryAccountByPaging" parameterType="java.util.HashMap" resultType="accountDTO">
+    <select id="queryAccountByPaging" parameterType="java.util.HashMap" resultType="accountDTO">
 
-</select>
+    </select>
 
 </mapper>

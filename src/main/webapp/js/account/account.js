@@ -2,9 +2,8 @@
  * Created by Anthony on 2017/1/1.
  */
 
-function queryAccount()
-{
-    var pageSize=10;
+function queryAccount() {
+    var pageSize = 10;
     $.ajax({
         cache: true,
         type: "POST",
@@ -19,7 +18,7 @@ function queryAccount()
             }
             else if (res.code == '00') {
 
-                location.href="user/success.do";
+                location.href = "user/success.do";
             }
         },
         error: function (request) {
@@ -28,7 +27,6 @@ function queryAccount()
     });
 }
 
-function showList(resList)
-{
+function showList(resList) {
 
 }

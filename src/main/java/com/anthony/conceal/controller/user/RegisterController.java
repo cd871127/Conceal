@@ -19,23 +19,20 @@ public class RegisterController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "register.do",method = RequestMethod.GET)
-    public String openRegisterPage()
-    {
+    @RequestMapping(value = "register.do", method = RequestMethod.GET)
+    public String openRegisterPage() {
         return "user/register";
     }
 
-    @RequestMapping(value = "register.do",method = RequestMethod.POST)
+    @RequestMapping(value = "register.do", method = RequestMethod.POST)
     @ResponseBody
-    public ResObject register(UserDTO userDTO)
-    {
-        String message="注册成功";
-        String code="00";
-        String content="";
-        if(!userService.userRegister(userDTO))
-        {
-            message="注册失败";
-            code="01";
+    public ResObject register(UserDTO userDTO) {
+        String message = "注册成功";
+        String code = "00";
+        String content = "";
+        if (!userService.userRegister(userDTO)) {
+            message = "注册失败";
+            code = "01";
         }
         return new ResObject.ResObjectBuilder().code(code).message(message).content(content).build();
     }
