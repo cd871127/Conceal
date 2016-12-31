@@ -1,0 +1,83 @@
+group 'com.anthony'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'application'
+apply plugin: 'org.akhikhl.gretty'
+
+buildscript {
+    repositories {
+        maven {
+            url "http://maven.aliyun.com/nexus/content/groups/public"
+        }
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.akhikhl.gretty:gretty:+'
+    }
+}
+
+repositories {
+    maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public"
+    }
+}
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+dependencies {
+    //mysql driver
+    compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.5'
+
+    //connector pool
+    compile group: 'com.mchange', name: 'c3p0', version: '0.9.5.2'
+    //Mybatis
+    compile group: 'org.mybatis', name: 'mybatis', version: '3.4.1'
+    compile group: 'org.mybatis', name: 'mybatis-spring', version: '1.3.0'
+
+    //Spring
+    compile group: 'org.springframework', name: 'spring-aop', version: '4.3.5.RELEASE'
+    compile group: 'org.springframework', name: 'spring-beans', version: '4.3.5.RELEASE'
+    compile group: 'org.springframework', name: 'spring-core', version: '4.3.5.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context', version: '4.3.5.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context-support', version: '4.3.5.RELEASE'
+    compile group: 'org.springframework', name: 'spring-tx', version: '4.3.5.RELEASE'
+    compile group: 'org.springframework', name: 'spring-jdbc', version: '4.3.5.RELEASE'
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.5.RELEASE'
+    compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.3.2'
+    //Log
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.22'
+    compile group: 'org.slf4j', name: 'jul-to-slf4j', version: '1.7.22'
+    compile group: 'org.slf4j', name: 'log4j-over-slf4j', version: '1.7.22'
+    compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.22'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.8'
+    compile group: 'ch.qos.logback', name: 'logback-core', version: '1.1.8'
+    compile group: 'org.logback-extensions', name: 'logback-ext-spring', version: '0.1.4'
+
+    //servlet
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+
+    //junit
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.8.5'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.5'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.8.5'
+}
+
+gretty {
+    port = 8888
+    contextPath = "/${project.name}"
+    servletContainer = 'tomcat8' // or tomcat7
+    scanInterval=1
+//    contextConfigFile="G:\\Project\\Conceal\\src\\main\\webapp\\META-INF\\context.xml"
+//    enableNaming = true
+}
+
+mainClassName = "com.anthony.conceal.Main"
+
+println(mainClassName)
+
+
+

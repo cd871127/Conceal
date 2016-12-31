@@ -36,11 +36,10 @@ public class LoginController {
         userDTO = userService.userLogin(userName);
         String message;
         String code;
-        HttpSession session=null;
         if (null != userDTO && userDTO.getPassWord().equals(passWord)) {
             message = "登录成功";
             code = "00";
-            session=request.getSession();
+            HttpSession session=request.getSession();
             session.setAttribute("userDTO",userDTO);
         } else {
             message = "登录失败";
@@ -58,6 +57,6 @@ public class LoginController {
         HttpSession session=request.getSession();
         UserDTO userDTO=(UserDTO) session.getAttribute("userDTO");
         System.out.println(userDTO);
-        return "main_page";
+        return "account/query_account";
     }
 }
