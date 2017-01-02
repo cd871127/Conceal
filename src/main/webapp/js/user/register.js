@@ -15,10 +15,10 @@ function register() {
         },
         async: false,
         success: function (res) {
-            if (res.code == '01') {
+            if (res.code == '00') {
                 alert(res.message);
             }
-            else if (res.code == '00') {
+            else {
                 alert(res.message);
             }
         },

@@ -28,11 +28,11 @@ public class RegisterController {
     @ResponseBody
     public ResObject register(UserDTO userDTO) {
         String message = "注册成功";
-        String code = "00";
+        String code = ResObject.SUCCESS;
         String content = "";
         if (!userService.userRegister(userDTO)) {
             message = "注册失败";
-            code = "01";
+            code = ResObject.REGISTER_FAIL;
         }
         return new ResObject.ResObjectBuilder().code(code).message(message).content(content).build();
     }

@@ -38,12 +38,12 @@ public class LoginController {
         String code;
         if (null != userDTO && userDTO.getPassWord().equals(passWord)) {
             message = "登录成功";
-            code = "00";
+            code = ResObject.SUCCESS;
             HttpSession session = request.getSession();
             session.setAttribute("userDTO", userDTO);
         } else {
             message = "登录失败";
-            code = "01";
+            code = ResObject.LOGIN_FAIL;
         }
         Map<String, String> res = new HashMap<>();
         res.put("res", message);

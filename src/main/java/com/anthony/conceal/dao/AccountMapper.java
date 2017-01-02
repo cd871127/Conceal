@@ -10,5 +10,5 @@ import java.util.Map;
  * Created by Anthony on 2016/12/22.
  */
 public interface AccountMapper {
-    List<AccountDTO> queryAccountByPaging(Map<String, String> paraMap);
+    List<AccountDTO> queryAccountByPaging(Map<String, Object> paraMap);
 }

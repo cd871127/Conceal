@@ -11,10 +11,14 @@
 <head>
     <base href=" <%=basePath%>">
     <script type="text/JavaScript" src="js/common/jquery-3.1.1.min.js"></script>
+    <script type="text/JavaScript" src="js/common/common.js"></script>
     <script type="text/JavaScript" src="js/account/account.js"></script>
     <title>Title</title>
 </head>
 <body>
+<div id="tableDiv">
 
+</div>
+<button id="nextPage" onclick="queryAccount(curPage++)">下一页</button>
 </body>
 </html>

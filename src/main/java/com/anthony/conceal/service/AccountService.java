@@ -16,7 +16,7 @@ public class AccountService {
     @Resource
     private AccountMapper accountMapper;
 
-    List<AccountDTO> queryAccountByPaging(Map<String, String> paraMap) {
+    public List<AccountDTO> queryAccountByPaging(Map<String, Object> paraMap) {
         return accountMapper.queryAccountByPaging(paraMap);
     }
 
