@@ -16,11 +16,11 @@
     </appender>
 
     <!--<appender name="FILE" class="ch.qos.logback.core.FileAppender">-->
-        <!--<file>1.log</file>-->
-        <!--<encoder>-->
-            <!--<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
-            <!--<charset>UTF-8</charset>-->
-        <!--</encoder>-->
+    <!--<file>1.log</file>-->
+    <!--<encoder>-->
+    <!--<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
+    <!--<charset>UTF-8</charset>-->
+    <!--</encoder>-->
     <!--</appender>-->
 
 

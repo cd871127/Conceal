@@ -20,12 +20,10 @@ function createTable(columnName) {
 }
 
 function fillTableData(table, data) {
-    for(var i in data)
-    {
-        var newTr=$("<tr></tr>");
-        for(var j in data[i])
-        {
-            var newTd=$("<td></td>");
+    for (var i in data) {
+        var newTr = $("<tr></tr>");
+        for (var j in data[i]) {
+            var newTd = $("<td></td>");
             console.log(data[i][j])
             newTd.text(data[i][j]);
             newTr.append(newTd);
@@ -36,10 +34,10 @@ function fillTableData(table, data) {
 }
 
 function objectsToArray(objAttr, objects) {
-    var data=new Array();
+    var data = new Array();
     for (var i in objects) {
-        var tmp=new Array();
-        for(var j in objAttr) {
+        var tmp = new Array();
+        for (var j in objAttr) {
             tmp.push(objects[i][objAttr[j]]);
         }
         data.push(tmp);

@@ -31,8 +31,8 @@ public class AccountController {
         Integer pageSize = Integer.valueOf(request.getParameter("pageSize"));
         Integer startIndex = Integer.valueOf(request.getParameter("startIndex"));
         Map<String, Object> paraMap = new HashMap<>();
-        HttpSession session=request.getSession();
-        UserDTO userDTO=(UserDTO)session.getAttribute("userDTO");
+        HttpSession session = request.getSession();
+        UserDTO userDTO = (UserDTO) session.getAttribute("userDTO");
         paraMap.put("pageSize", pageSize);
         paraMap.put("startIndex", startIndex);
         paraMap.put("userName", userDTO.getUserName());

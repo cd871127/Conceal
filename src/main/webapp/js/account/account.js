@@ -13,7 +13,7 @@ var columnName = [
     '创建日期',
     '更新日期'
 ];
-var objAttr=[
+var objAttr = [
     'accountName',
     'accountPassWord',
     'accountDesc',
@@ -36,8 +36,8 @@ function queryAccount(curPage) {
         async: false,
         success: function (res) {
             if (res.code == '00') {
-                var data=formatData(res.content);
-                fillTableData(table,objectsToArray(objAttr,res.content));
+                var data = formatData(res.content);
+                fillTableData(table, objectsToArray(objAttr, res.content));
             }
             else {
                 alert(res.message);
@@ -51,10 +51,9 @@ function queryAccount(curPage) {
 
 //格式化数据 转换日期
 function formatData(data) {
-    for(var i in data)
-    {
-        data[i].createDate=new Date(data[i].createDate);
-        data[i].updateDate=new Date(data[i].updateDate);
+    for (var i in data) {
+        data[i].createDate = new Date(data[i].createDate);
+        data[i].updateDate = new Date(data[i].updateDate);
     }
 }
 

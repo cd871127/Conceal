@@ -1,10 +1,12 @@
 package com.anthony.conceal.controller.common;
 
+import com.anthony.conceal.service.CommonService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,11 +17,13 @@ import java.util.Map;
 @RequestMapping("common")
 public class CommonController {
 
-    @RequestMapping(value = "queryDataDict.do",method = RequestMethod.POST)
+    @Resource
+    private CommonService commonService;
+
+    @RequestMapping(value = "queryDataDict.do", method = RequestMethod.POST)
     @ResponseBody
-    public String queryDataDict()
-    {
-        Map<String,String> paraMap=new HashMap<>();
+    public String queryDataDict() {
+        Map<String, String> paraMap = new HashMap<>();
 
         return null;
     }

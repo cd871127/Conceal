@@ -8,9 +8,9 @@ public class ResObject {
     private String message;
     private Object content;
 
-    public final static String SUCCESS="00";
-    public final static String LOGIN_FAIL="01";
-    public final static String REGISTER_FAIL="02";
+    public final static String SUCCESS = "00";
+    public final static String LOGIN_FAIL = "01";
+    public final static String REGISTER_FAIL = "02";
 
     private ResObject(ResObjectBuilder builder) {
         code = builder.code;
