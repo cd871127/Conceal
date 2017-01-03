@@ -16,8 +16,11 @@
     <title>Title</title>
 </head>
 <body>
-<div id="tableDiv">
+<div id="buttonDiv">
+    <button id="addAccountBtn" onclick="addAccount()">添加</button>
 
+</div>
+<div id="tableDiv">
 </div>
 <button id="nextPage" onclick="queryAccount(curPage++)">下一页</button>
 </body>

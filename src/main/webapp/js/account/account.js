@@ -37,7 +37,6 @@ function queryAccount(curPage) {
         dataType:"json",
         async: false,
         dataFilter:function (data,type){
-            console.log("dataFilter");
             data=$.parseJSON(data);
             var content=data.content;
             for (var i in content) {
@@ -45,7 +44,6 @@ function queryAccount(curPage) {
                 content[i].updateDate = new Date(content[i].updateDate);
                 content[i].accountType=dataDict.account_type[content[i].accountType];
             }
-            console.log(data);
             return JSON.stringify(data);
         },
         success: function (res) {
@@ -60,6 +58,11 @@ function queryAccount(curPage) {
             alert("连接失败");
         }
     });
+}
+
+function addAccount()
+{
+
 }
 
 window.onload = function () {
