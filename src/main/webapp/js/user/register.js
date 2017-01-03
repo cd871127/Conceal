@@ -16,7 +16,7 @@ function register() {
         async: false,
         success: function (res) {
             if (res.code == '00') {
-                alert(res.message);
+                location.href = "user/success.do";
             }
             else {
                 alert(res.message);

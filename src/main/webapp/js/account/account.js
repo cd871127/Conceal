@@ -34,10 +34,22 @@ function queryAccount(curPage) {
             pageSize: pageSize,
             startIndex: startIndex
         },
+        dataType:"json",
         async: false,
+        dataFilter:function (data,type){
+            console.log("dataFilter");
+            data=$.parseJSON(data);
+            var content=data.content;
+            for (var i in content) {
+                content[i].createDate = new Date(content[i].createDate);
+                content[i].updateDate = new Date(content[i].updateDate);
+                content[i].accountType=dataDict.account_type[content[i].accountType];
+            }
+            console.log(data);
+            return JSON.stringify(data);
+        },
         success: function (res) {
             if (res.code == '00') {
-                var data = formatData(res.content);
                 fillTableData(table, objectsToArray(objAttr, res.content));
             }
             else {
@@ -50,21 +62,8 @@ function queryAccount(curPage) {
     });
 }
 
-//格式化数据 转换日期
-function formatData(data) {
-    for (var i in data) {
-        data[i].createDate = new Date(data[i].createDate);
-        data[i].updateDate = new Date(data[i].updateDate);
-         // data[i].dataState = dataDict.data_state.[data[i].dataState];
-
-        console.log(dataDict.data_state['1']);
-
-    }
-}
-
 window.onload = function () {
     dataDict=queryDataDict(['account_type']);
-
     table = createTable(columnName);
     table.appendTo("#tableDiv");
     queryAccount(curPage++);
