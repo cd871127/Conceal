@@ -27,6 +27,6 @@ public class Main extends HttpServlet {
 
         Map<String, Map<String, String>> m = commonService.getDictMapByColumnName(new ArrayList<String>(Arrays.asList("data_state", "account_type")));
         System.out.println(m);
-
+//        http://www.mycodes.net/154/8985.htm
     }
 }
