@@ -29,12 +29,6 @@ function fillTableData(table, data) {
             console.log(data[i][j])
             newTd.text(data[i][j]);
             newTr.append(newTd);
-            if(0==j)
-            {
-                var checkBox=$("<input type='checkbox'>");
-                newTd.append(checkBox);
-            }
-
         }
         table.append(newTr);
     }

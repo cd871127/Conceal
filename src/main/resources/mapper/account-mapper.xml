@@ -18,7 +18,7 @@
         FROM account_tbl
         WHERE owner_id = (SELECT id
                           FROM user_tbl
-                          WHERE user_name = #{userName}) AND data_state = TRUE
+                          WHERE user_name = #{userName}) AND data_state = '1'
         LIMIT #{startIndex}, #{pageSize}
     </select>
 

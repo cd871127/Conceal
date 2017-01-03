@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anthony.conceal.dao.CommonMapper">
+
+<resultMap id="dictMap" type="java.util.HashMap">
+  <result column="column_code" property="key"/>
+  <result column="column_desc" property="value"/>
+</resultMap>
+    
+<select id="getDictMapByColumnName" parameterType="java.lang.String" resultMap="dictMap">
+  select column_code,column_desc from data_dict_tbl where column_name=#{columnName} LIMIT 0,1
+</select>
+
+</mapper>

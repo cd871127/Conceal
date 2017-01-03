@@ -36,6 +36,7 @@ function queryAccount(curPage) {
         async: false,
         success: function (res) {
             if (res.code == '00') {
+                var data=formatData(res.content);
                 fillTableData(table,objectsToArray(objAttr,res.content));
             }
             else {
@@ -46,6 +47,15 @@ function queryAccount(curPage) {
             alert("连接失败");
         }
     });
+}
+
+//格式化数据 转换日期
+function formatData(data) {
+    for(var i in data)
+    {
+        data[i].createDate=new Date(data[i].createDate);
+        data[i].updateDate=new Date(data[i].updateDate);
+    }
 }
 
 
