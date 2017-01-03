@@ -7,7 +7,4 @@
     <typeAliases>
         <package name="com.anthony.conceal.dto"/>
     </typeAliases>
-    <typeHandlers>
-        <package name="com.anthony.conceal.common.MybatisTypeHandler"/>
-    </typeHandlers>
 </configuration>

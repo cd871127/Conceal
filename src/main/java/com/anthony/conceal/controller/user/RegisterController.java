@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by CHENDONG239 on 2016-12-29.
  */
@@ -16,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("user")
 public class RegisterController {
 
-    @Autowired
+    @Resource
     UserService userService;
 
     @RequestMapping(value = "register.do", method = RequestMethod.GET)
@@ -26,7 +30,7 @@ public class RegisterController {
 
     @RequestMapping(value = "register.do", method = RequestMethod.POST)
     @ResponseBody
-    public ResObject register(UserDTO userDTO) {
+    public ResObject register(UserDTO userDTO, HttpServletRequest request) {
         String message = "注册成功";
         String code = ResObject.SUCCESS;
         String content = "";
@@ -34,6 +38,8 @@ public class RegisterController {
             message = "注册失败";
             code = ResObject.REGISTER_FAIL;
         }
+        HttpSession session = request.getSession();
+        session.setAttribute("userDTO", userDTO);
         return new ResObject.ResObjectBuilder().code(code).message(message).content(content).build();
     }
 }

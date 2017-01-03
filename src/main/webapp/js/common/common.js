@@ -24,7 +24,6 @@ function fillTableData(table, data) {
         var newTr = $("<tr></tr>");
         for (var j in data[i]) {
             var newTd = $("<td></td>");
-            console.log(data[i][j])
             newTd.text(data[i][j]);
             newTr.append(newTd);
         }
@@ -43,4 +42,30 @@ function objectsToArray(objAttr, objects) {
         data.push(tmp);
     }
     return data;
+}
+
+//查询数据字典
+function queryDataDict(columnName) {
+    var dataDict="";
+    $.ajax({
+        cache: true,
+        type: "POST",
+        url: "common/queryDataDict.do",
+        data: {
+            columnName:columnName
+        },
+        async: false,
+        success: function (res) {
+            if (res.code == '00') {
+                dataDict= res.content;
+            }
+            else {
+                alert(res.message);
+            }
+        },
+        error: function (request) {
+            alert("连接失败");
+        }
+    });
+    return dataDict;
 }

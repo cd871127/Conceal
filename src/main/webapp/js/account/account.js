@@ -4,6 +4,7 @@
 
 var curPage = 1;
 var table;
+var dataDict;
 var columnName = [
     '账户名',
     '密码',
@@ -54,11 +55,16 @@ function formatData(data) {
     for (var i in data) {
         data[i].createDate = new Date(data[i].createDate);
         data[i].updateDate = new Date(data[i].updateDate);
+         // data[i].dataState = dataDict.data_state.[data[i].dataState];
+
+        console.log(dataDict.data_state['1']);
+
     }
 }
 
-
 window.onload = function () {
+    dataDict=queryDataDict(['account_type']);
+
     table = createTable(columnName);
     table.appendTo("#tableDiv");
     queryAccount(curPage++);

@@ -38,7 +38,6 @@ public class AccountController {
         paraMap.put("userName", userDTO.getUserName());
         List<AccountDTO> resList = accountService.queryAccountByPaging(paraMap);
 
-
         return new ResObject.ResObjectBuilder().code(ResObject.SUCCESS).message("").content(resList).build();
     }
 }
