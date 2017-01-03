@@ -18,10 +18,13 @@
 <body>
 <div id="buttonDiv">
     <button id="addAccountBtn" onclick="addAccount()">添加</button>
+    <button id="delAccountBtn" onclick="delAccount()">删除</button>
+    <button id="editAccountBtn" onclick="editAccount()">编辑</button>
 
 </div>
 <div id="tableDiv">
 </div>
-<button id="nextPage" onclick="queryAccount(curPage++)">下一页</button>
+<button id="prePage" onclick="changePage(curPage--)">上一页</button>
+<button id="nextPage" onclick="changePage(curPage++)">下一页</button>
 </body>
 </html>

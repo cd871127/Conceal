@@ -62,12 +62,23 @@ function queryAccount(curPage) {
 
 function addAccount()
 {
+}
+function delAccount()
+{
+}
+function editAccount()
+{
+}
 
+function changePage(curPage)
+{
+    $("#tableDiv").children().remove();
+    table = createTable(columnName);
+    table.appendTo("#tableDiv");
+    queryAccount(curPage);
 }
 
 window.onload = function () {
     dataDict=queryDataDict(['account_type']);
-    table = createTable(columnName);
-    table.appendTo("#tableDiv");
-    queryAccount(curPage++);
+    changePage(curPage++);
 }
