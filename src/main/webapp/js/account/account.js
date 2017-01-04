@@ -100,17 +100,18 @@ $("#resTable").DataTable({
     "bProcessing": true,
     "sDom": "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
     "sPaginationType": "full_numbers",
-    "fnServerData":{
-        "sAjaxSource":"js/data/datatable.json",
-        "sServerMethod":"GET",
-        "fnServerParams":{
-            "beginDate":"2016-04-18",
-            "endDate":"2016-04-21"
-        }
-    },
-    "aoColumns":[
-        {"mData":"name"},
-        {"mData":"age"}
+    sAjaxSource:"account/queryAccount.do",
+    // "fnServerData":{
+
+        sServerMethod:"POST",
+    aaData:{
+            pageSize:1000,
+            startIndex:0
+        },
+    // },
+    aoColumns:[
+        {mData:"name"},
+        {mData:"age"}
     ]
 });
 
