@@ -6,7 +6,7 @@
     <base href=" <%=basePath%>">
     <script type="text/JavaScript" src="js/common/jquery-3.1.1.min.js"></script>
     <script type="text/JavaScript" src="js/common/common.js"></script>
-    <script type="text/JavaScript" src="js/account/account.js"></script>
+
     <meta charset="utf-8"/>
     <title>Conceal</title>
     <meta name="description"
@@ -296,7 +296,7 @@
                                                                          data-title="ajax to load the data."></i>
                             </header>
                             <div class="table-responsive">
-                                <table class="table table-striped m-b-none" data-ride="datatables"> <!--data-ride="datatables"-->
+                                <table id="resTable" class="table table-striped m-b-none"> <!--data-ride="datatables"-->
                                     <thead>
                                     <tr>
                                         <th width="20%">Rendering engine</th>
@@ -323,5 +323,6 @@
 </section>
 <script src="js/common/app.v2.js"></script> <!-- Bootstrap --> <!-- App --> <!-- datatables -->
 <script src="js/common/jquery.dataTables.min.js"></script>
+<script type="text/JavaScript" src="js/account/account.js"></script>
 </body>
 </html>

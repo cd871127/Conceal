@@ -34,15 +34,15 @@ function queryAccount(curPage) {
             pageSize: pageSize,
             startIndex: startIndex
         },
-        dataType:"json",
+        dataType: "json",
         async: false,
-        dataFilter:function (data,type){
-            data=$.parseJSON(data);
-            var content=data.content;
+        dataFilter: function (data, type) {
+            data = $.parseJSON(data);
+            var content = data.content;
             for (var i in content) {
                 content[i].createDate = new Date(content[i].createDate);
                 content[i].updateDate = new Date(content[i].updateDate);
-                content[i].accountType=dataDict.account_type[content[i].accountType];
+                content[i].accountType = dataDict.account_type[content[i].accountType];
             }
             return JSON.stringify(data);
         },
@@ -60,25 +60,72 @@ function queryAccount(curPage) {
     });
 }
 
-function addAccount()
-{
+function addAccount() {
 }
-function delAccount()
-{
+function delAccount() {
 }
-function editAccount()
-{
+function editAccount() {
 }
 
-function changePage(curPage)
-{
+function changePage(curPage) {
     $("#tableDiv").children().remove();
     table = createTable(columnName);
     table.appendTo("#tableDiv");
     queryAccount(curPage);
 }
 
-window.onload = function () {
-    dataDict=queryDataDict(['account_type']);
-    changePage(curPage++);
-}
+// window.onload = function () {
+//     dataDict=queryDataDict(['account_type']);
+//     changePage(curPage++);
+// }
+
+//
+// $(this).dataTable({
+//     "bProcessing": true,
+//     "sAjaxSource": "js/data/datatable.json",
+//     "sDom": "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
+//     "sPaginationType": "full_numbers",
+//     "aoColumns": [{"mData": "engine"}, {"mData": "browser"}, {"mData": "platform"}, {"mData": "version"}, {"mData": "grade"}]
+// });
+
+// $("#resTable").DataTable({
+//     "bProcessing": true,
+//     "sAjaxSource": "js/data/datatable.json",
+//     "sDom": "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
+//     "sPaginationType": "full_numbers",
+//     "aoColumns": [{"mData": "engine"}, {"mData": "browser"}, {"mData": "platform"}, {"mData": "version"}, {"mData": "grade"}]
+// });
+
+$("#resTable").DataTable({
+    "bProcessing": true,
+    "sDom": "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
+    "sPaginationType": "full_numbers",
+    "fnServerData":{
+        "sAjaxSource":"js/data/datatable.json",
+        "sServerMethod":"GET",
+        "fnServerParams":{
+            "beginDate":"2016-04-18",
+            "endDate":"2016-04-21"
+        }
+    },
+    "aoColumns":[
+        {"mData":"name"},
+        {"mData":"age"}
+    ]
+});
+
+
+// $("#tableid").DataTable({
+//     ajax:{
+//         url:"data.action",
+//         type:"POST",
+//         data:{
+//             beginDate:"2016-04-18",
+//             endDate:"2016-04-21"
+//         }
+//     },
+//     columns:[
+//         {data:"name"},
+//         {data:"age"}
+//     ]
+// });
