@@ -27,12 +27,12 @@ public class RequestFilter implements Filter {
         HttpSession session = httpRequest.getSession();
         if ("login.do".equalsIgnoreCase(doName) ||
                 "register.do".equalsIgnoreCase(doName) ||
-                "index.jsp".equalsIgnoreCase(doName) ||
-                "register.jsp".equalsIgnoreCase(doName) ||
+                "signin.jsp".equalsIgnoreCase(doName) ||
+                "signup.jsp".equalsIgnoreCase(doName) ||
                 null != session.getAttribute("userDTO")) {
             chain.doFilter(request, response);
         } else {
-            httpResponse.sendRedirect(httpRequest.getContextPath() + "/index.jsp");
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/signin.jsp");
         }
         return;
     }

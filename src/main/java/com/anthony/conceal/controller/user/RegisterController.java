@@ -25,7 +25,7 @@ public class RegisterController {
 
     @RequestMapping(value = "register.do", method = RequestMethod.GET)
     public String openRegisterPage() {
-        return "user/register";
+        return "user/signup";
     }
 
     @RequestMapping(value = "register.do", method = RequestMethod.POST)

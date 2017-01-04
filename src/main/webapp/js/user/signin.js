@@ -17,9 +17,9 @@ function login() {
                 location.href = "user/success.do";
             }
             else {
-                var messageLabel = $('#errorMessage');
+                var messageLabel = $("<label style='color:red'></label>");
+                $("#passWordDiv").append(messageLabel)
                 messageLabel.text(res.message);
-                messageLabel.show();
             }
         },
         error: function (request) {
