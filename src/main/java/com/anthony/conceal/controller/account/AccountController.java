@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Anthony on 2017/1/1.
@@ -27,7 +25,7 @@ public class AccountController {
 
     @RequestMapping(value = "queryAccount.do", method = RequestMethod.POST)
     @ResponseBody
-    public ResObject queryAccount(HttpServletRequest request) {
+    public List<AccountDTO> queryAccount(HttpServletRequest request) {
         Integer pageSize = Integer.valueOf(request.getParameter("pageSize"));
         Integer startIndex = Integer.valueOf(request.getParameter("startIndex"));
         Map<String, Object> paraMap = new HashMap<>();
@@ -37,7 +35,18 @@ public class AccountController {
         paraMap.put("startIndex", startIndex);
         paraMap.put("userName", userDTO.getUserName());
         List<AccountDTO> resList = accountService.queryAccountByPaging(paraMap);
+//        return new ResObject.ResObjectBuilder().code(ResObject.SUCCESS).message("").content(resList).build();
+        return resList;
+    }
 
-        return new ResObject.ResObjectBuilder().code(ResObject.SUCCESS).message("").content(resList).build();
+    private void printRequest(HttpServletRequest request)
+    {
+        System.out.println("print request:");
+        Map m=request.getParameterMap();
+        Set<Map.Entry<String, String>> set = m.entrySet();
+        for(Map.Entry entry : set)
+        {
+            System.out.println(entry.getKey() + ":" + Arrays.toString((String[])entry.getValue()));
+        }
     }
 }

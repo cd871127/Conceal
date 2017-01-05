@@ -13,6 +13,7 @@
           content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <link rel="stylesheet" href="css/app.v2.css" type="text/css"/>
+    <%--<link rel="stylesheet" href="css/jquery.dataTables.min.css" type="text/css">--%>
     <link rel="stylesheet" href="css/datatables.css" type="text/css">
     <!--[if lt IE 9]>
     <script src="js/ie/html5shiv.js" cache="false"></script>
@@ -296,7 +297,7 @@
                                                                          data-title="ajax to load the data."></i>
                             </header>
                             <div class="table-responsive">
-                                <table id="resTable" class="table table-striped m-b-none"> <!--data-ride="datatables"-->
+                                <table  class="table table-striped m-b-none" data-ride="datatables"> <!--data-ride="datatables"  id="resTable"-->
                                     <thead>
                                     <tr>
                                         <th width="20%">Rendering engine</th>

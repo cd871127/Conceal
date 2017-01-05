@@ -96,23 +96,27 @@ function changePage(curPage) {
 //     "aoColumns": [{"mData": "engine"}, {"mData": "browser"}, {"mData": "platform"}, {"mData": "version"}, {"mData": "grade"}]
 // });
 
-$("#resTable").DataTable({
-    "bProcessing": true,
-    "sDom": "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
-    "sPaginationType": "full_numbers",
+$("#resTable").dataTable({
+    bProcessing: true,
+    sDom: "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
+    sPaginationType: "full_numbers",
     sAjaxSource:"account/queryAccount.do",
+    sServerMethod:"POST",
     // "fnServerData":{
 
-        sServerMethod:"POST",
-    aaData:{
-            pageSize:1000,
-            startIndex:0
-        },
+    "fnServerParams": function( aoData )
+    {
+        aoData.push(
+            {"name":"pageSize","value":"1000"},
+            {"name":"startIndex","value":"0"}
+        )
+    },
+    // fnServerParams:{
+    //         pageSize:1000,
+    //         startIndex:0
+    //     },
     // },
-    aoColumns:[
-        {mData:"name"},
-        {mData:"age"}
-    ]
+    "aoColumns": [{"mData": "engine"}, {"mData": "browser"}, {"mData": "platform"}, {"mData": "version"}, {"mData": "grade"}]
 });
 
 
