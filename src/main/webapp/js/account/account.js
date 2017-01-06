@@ -19,13 +19,17 @@ var objAttr = [
     'accountPassWord',
     'accountDesc',
     'accountUrl',
-    'accountType',
-    'createDate',
-    'updateDate'
+    'accountType'
+    // ,
+    // 'createDate',
+    // 'updateDate'
 ];
-function queryAccount(curPage) {
+
+function getAccountData() {
+    dataDict=queryDataDict(['account_type']);
     var pageSize = 10;
-    var startIndex = (curPage - 1) * pageSize;
+    var startIndex = 0;
+    // var startIndex = (curPage - 1) * pageSize;
     $.ajax({
         cache: true,
         type: "POST",
@@ -48,6 +52,46 @@ function queryAccount(curPage) {
         },
         success: function (res) {
             if (res.code == '00') {
+                fillTableData($("#accountData"), objectsToArray(objAttr, res.content));
+            }
+            else {
+                alert(res.message);
+            }
+        },
+        error: function (request) {
+            alert("连接失败");
+        }
+    });
+}
+
+
+
+function queryAccount(curPage) {
+    var pageSize = 10;
+    var startIndex = (curPage - 1) * pageSize;
+    $.ajax({
+        cache: true,
+        type: "POST",
+        url: "account/queryAccount.do",
+        data: {
+            pageSize: pageSize,
+            startIndex: startIndex
+        },
+        dataType: "json",
+        async: false,
+        dataFilter: function (data, type) {
+            data = $.parseJSON(data);
+            var content = data.content;
+            for (var i in content) {
+                content[i].createDate = new Date(content[i].createDate);
+                content[i].updateDate = new Date(content[i].updateDate);
+                // content[i].accountType = dataDict.account_type[content[i].accountType];
+            }
+            return JSON.stringify(data);
+        },
+        success: function (res) {
+            if (res.code == '00') {
+                console.log("123123123");
                 fillTableData(table, objectsToArray(objAttr, res.content));
             }
             else {
@@ -74,10 +118,10 @@ function changePage(curPage) {
     queryAccount(curPage);
 }
 
-// window.onload = function () {
-//     dataDict=queryDataDict(['account_type']);
-//     changePage(curPage++);
-// }
+window.onload = function () {
+    dataDict=queryDataDict(['account_type']);
+    changePage(curPage++);
+}
 
 //
 // $(this).dataTable({
@@ -96,28 +140,28 @@ function changePage(curPage) {
 //     "aoColumns": [{"mData": "engine"}, {"mData": "browser"}, {"mData": "platform"}, {"mData": "version"}, {"mData": "grade"}]
 // });
 
-$("#resTable").dataTable({
-    bProcessing: true,
-    sDom: "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
-    sPaginationType: "full_numbers",
-    sAjaxSource:"account/queryAccount.do",
-    sServerMethod:"POST",
-    // "fnServerData":{
-
-    "fnServerParams": function( aoData )
-    {
-        aoData.push(
-            {"name":"pageSize","value":"1000"},
-            {"name":"startIndex","value":"0"}
-        )
-    },
-    // fnServerParams:{
-    //         pageSize:1000,
-    //         startIndex:0
-    //     },
-    // },
-    "aoColumns": [{"mData": "engine"}, {"mData": "browser"}, {"mData": "platform"}, {"mData": "version"}, {"mData": "grade"}]
-});
+// $("#resTable").dataTable({
+//     bProcessing: true,
+//     sDom: "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
+//     sPaginationType: "full_numbers",
+//     sAjaxSource:"account/queryAccount.do",
+//     sServerMethod:"POST",
+//     // "fnServerData":{
+//
+//     "fnServerParams": function( aoData )
+//     {
+//         aoData.push(
+//             {"name":"pageSize","value":"1000"},
+//             {"name":"startIndex","value":"0"}
+//         )
+//     },
+//     // fnServerParams:{
+//     //         pageSize:1000,
+//     //         startIndex:0
+//     //     },
+//     // },
+//     "aoColumns": [{"mData": "engine"}, {"mData": "browser"}, {"mData": "platform"}, {"mData": "version"}, {"mData": "grade"}]
+// });
 
 
 // $("#tableid").DataTable({

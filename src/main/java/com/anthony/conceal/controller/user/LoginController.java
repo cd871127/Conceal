@@ -47,12 +47,11 @@ public class LoginController {
         }
         Map<String, String> res = new HashMap<>();
         res.put("res", message);
-        ResObject resObject = new ResObject.ResObjectBuilder().code(code).content(res).message(message).build();
-        return resObject;
+        return new ResObject.ResObjectBuilder().code(code).content(res).message(message).build();
     }
 
     @RequestMapping(value = "success.do", method = GET)
     public String loginSuccess() {
-        return "account/query_account";
+        return "common/frame";
     }
 }

@@ -1,34 +1,32 @@
 ﻿<!DOCTYPE html>
 <html lang="en" class="app">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.anthony.conceal.dto.UserDTO" %>
 <%@ include file="/jsp/common/path.jsp" %>
 <head>
     <base href=" <%=basePath%>">
     <script type="text/JavaScript" src="js/common/jquery-3.1.1.min.js"></script>
-    <script type="text/JavaScript" src="js/common/common.js"></script>
-
     <meta charset="utf-8"/>
     <title>Conceal</title>
     <meta name="description"
           content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <link rel="stylesheet" href="css/app.v2.css" type="text/css"/>
-    <%--<link rel="stylesheet" href="css/jquery.dataTables.min.css" type="text/css">--%>
-    <link rel="stylesheet" href="css/datatables.css" type="text/css">
     <!--[if lt IE 9]>
     <script src="js/ie/html5shiv.js" cache="false"></script>
     <script src="js/ie/respond.min.js" cache="false"></script>
     <script src="js/ie/excanvas.js" cache="false"></script> <![endif]-->
 </head>
 <body>
+<input type="text" id="session" value="<%=((UserDTO)session.getAttribute("userDTO")).getId()%>" />
 <section class="vbox">
     <header class="bg-dark dk header navbar navbar-fixed-top-xs">
         <div class="navbar-header aside-md"><a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen"
                                                data-target="#nav"> <i class="fa fa-bars"></i> </a> <a href="#"
                                                                                                       class="navbar-brand"
                                                                                                       data-toggle="fullscreen"><img
-                src="images/logo.png" class="m-r-sm">Notebook</a> <a class="btn btn-link visible-xs"
-                                                                     data-toggle="dropdown" data-target=".nav-user"> <i
+                src="images/logo.png" class="m-r-sm">Conceal</a> <a class="btn btn-link visible-xs"
+                                                                    data-toggle="dropdown" data-target=".nav-user"> <i
                 class="fa fa-cog"></i> </a></div>
         <ul class="nav navbar-nav hidden-xs">
             <li class="dropdown"><a href="#" class="dropdown-toggle dker" data-toggle="dropdown"> <i
@@ -120,7 +118,8 @@
     </header>
     <section>
         <section class="hbox stretch"> <!-- .aside -->
-            <aside class="bg-light lter b-r aside-md hidden-print" id="nav">
+            <%--下一行调整侧边栏颜色--%>
+            <aside class="bg-dark lter b-r aside-md hidden-print" id="nav">
                 <section class="vbox">
                     <header class="header bg-primary lter text-center clearfix">
                         <div class="btn-group">
@@ -144,15 +143,22 @@
                                 <ul class="nav">
                                     <li><a href="index.html"> <i class="fa fa-dashboard icon"> <b class="bg-danger"></b>
                                     </i> <span>Workset</span> </a></li>
-                                    <li><a href="#layout"> <i class="fa fa-columns icon"> <b class="bg-warning"></b>
-                                    </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i
-                                            class="fa fa-angle-up text-active"></i> </span> <span>Layouts</span> </a>
+                                    <li>
+                                        <a href="#layout">
+                                            <i class="fa fa-columns icon"> <b class="bg-warning"></b></i>
+                                            <span class="pull-right"> <i class="fa fa-angle-down text"></i>
+                                                <i class="fa fa-angle-up text-active"></i>
+                                            </span> <span>真腻害</span>
+                                        </a>
                                         <ul class="nav lt">
-                                            <li><a href="layout-c.html"> <i class="fa fa-angle-right"></i> <span>Color option</span>
+                                            <li>
+                                                <a onclick="clickMenu(this)" style="cursor:pointer">
+                                                    <i class="fa fa-angle-right"></i> <span id="acac">账号管理</span>
+                                                </a>
+                                            </li>
+                                            <li><a href="layout-r.html"> <i class="fa fa-angle-right"></i> <span>没用的二级菜单1</span>
                                             </a></li>
-                                            <li><a href="layout-r.html"> <i class="fa fa-angle-right"></i> <span>Right nav</span>
-                                            </a></li>
-                                            <li><a href="layout-h.html"> <i class="fa fa-angle-right"></i> <span>H-Layout</span>
+                                            <li><a href="layout-h.html"> <i class="fa fa-angle-right"></i> <span>没用的二级菜单2</span>
                                             </a></li>
                                         </ul>
                                     </li>
@@ -180,7 +186,8 @@
                                                 <ul class="nav bg">
                                                     <li><a href="table-static.html"> <i class="fa fa-angle-right"></i>
                                                         <span>Table static</span> </a></li>
-                                                    <li class="active"><a href="table-datatable.jsp" class="active"> <i
+                                                    <li class="active"><a href="../account/table-datatable.jsp"
+                                                                          class="active"> <i
                                                             class="fa fa-angle-right"></i> <span>Datatable</span> </a>
                                                     </li>
                                                     <li><a href="table-datagrid.html"> <i class="fa fa-angle-right"></i>
@@ -242,7 +249,8 @@
                             </nav>
                             <!-- / nav --> </div>
                     </section>
-                    <footer class="footer lt hidden-xs b-t b-light">
+                    <%--下一行调整侧边栏颜色--%>
+                    <footer class="footer lt hidden-xs b-t b-dark">
                         <div id="chat" class="dropup">
                             <section class="dropdown-menu on aside-md m-l-n">
                                 <section class="panel bg-white">
@@ -267,52 +275,24 @@
                                 </section>
                             </section>
                         </div>
-                        <a href="#nav" data-toggle="class:nav-xs" class="pull-right btn btn-sm btn-default btn-icon"> <i
+                        <a href="#nav" data-toggle="class:nav-xs" class="pull-right btn btn-sm btn-dark btn-icon"> <i
                                 class="fa fa-angle-left text"></i> <i class="fa fa-angle-right text-active"></i> </a>
                         <div class="btn-group hidden-nav-xs">
-                            <button type="button" title="Chats" class="btn btn-icon btn-sm btn-default"
+                            <button type="button" title="Chats" class="btn btn-icon btn-sm btn-dark"
                                     data-toggle="dropdown" data-target="#chat"><i class="fa fa-comment-o"></i></button>
-                            <button type="button" title="Contacts" class="btn btn-icon btn-sm btn-default"
+                            <button type="button" title="Contacts" class="btn btn-icon btn-sm btn-dark"
                                     data-toggle="dropdown" data-target="#invite"><i class="fa fa-facebook"></i></button>
                         </div>
                     </footer>
                 </section>
             </aside>
             <!-- /.aside -->
-            <section id="content">
-                <section class="vbox">
-                    <section class="scrollable padder">
-                        <ul class="breadcrumb no-border no-radius b-b b-light pull-in">
-                            <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
-                            <li><a href="#">UI kit</a></li>
-                            <li><a href="#">Table</a></li>
-                            <li class="active">Datatable</li>
-                        </ul>
-                        <div class="m-b-md">
-                            <h3 class="m-b-none">Datatable</h3>
-                        </div>
-                        <section class="panel panel-default">
-                            <header class="panel-heading"> DataTables <i class="fa fa-info-sign text-muted"
-                                                                         data-toggle="tooltip" data-placement="bottom"
-                                                                         data-title="ajax to load the data."></i>
-                            </header>
-                            <div class="table-responsive">
-                                <table  class="table table-striped m-b-none" data-ride="datatables"> <!--data-ride="datatables"  id="resTable"-->
-                                    <thead>
-                                    <tr>
-                                        <th width="20%">Rendering engine</th>
-                                        <th width="25%">Browser</th>
-                                        <th width="25%">Platform(s)</th>
-                                        <th width="15%">Engine version</th>
-                                        <th width="15%">CSS grade</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </section>
-                    </section>
+            <section>
+                <section id="content" class="vbox">
+                    <%--页--%>
+                    <%--面--%>
+                    <%--内--%>
+                    <%--容--%>
                 </section>
                 <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
             </section>
@@ -324,7 +304,6 @@
     </section>
 </section>
 <script src="js/common/app.v2.js"></script> <!-- Bootstrap --> <!-- App --> <!-- datatables -->
-<script src="js/common/jquery.dataTables.min.js"></script>
-<script type="text/JavaScript" src="js/account/account.js"></script>
+<script src="js/common/frame.js"></script>
 </body>
 </html>

@@ -10,12 +10,12 @@
 <html>
 <head>
     <base href=" <%=basePath%>">
-    <script type="text/JavaScript" src="js/common/jquery-3.1.1.min.js"></script>
-    <script type="text/JavaScript" src="js/common/common.js"></script>
+    <%--<script type="text/JavaScript" src="js/common/jquery-3.1.1.min.js"></script>--%>
+    <%--<script type="text/JavaScript" src="js/common/common.js"></script>--%>
     <script type="text/JavaScript" src="js/account/account.js"></script>
     <title>Title</title>
 </head>
-<body>
+<body id="body">
 <div id="buttonDiv">
     <button id="addAccountBtn" onclick="addAccount()">添加</button>
     <button id="delAccountBtn" onclick="delAccount()">删除</button>

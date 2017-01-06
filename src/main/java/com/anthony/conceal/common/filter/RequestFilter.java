@@ -32,7 +32,7 @@ public class RequestFilter implements Filter {
                 null != session.getAttribute("userDTO")) {
             chain.doFilter(request, response);
         } else {
-            httpResponse.sendRedirect(httpRequest.getContextPath() + "/signin.jsp");
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/jsp/user/signin.jsp");
         }
         return;
     }

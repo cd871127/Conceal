@@ -25,7 +25,7 @@ public class AccountController {
 
     @RequestMapping(value = "queryAccount.do", method = RequestMethod.POST)
     @ResponseBody
-    public List<AccountDTO> queryAccount(HttpServletRequest request) {
+    public ResObject queryAccount(HttpServletRequest request) {
         Integer pageSize = Integer.valueOf(request.getParameter("pageSize"));
         Integer startIndex = Integer.valueOf(request.getParameter("startIndex"));
         Map<String, Object> paraMap = new HashMap<>();
@@ -35,18 +35,8 @@ public class AccountController {
         paraMap.put("startIndex", startIndex);
         paraMap.put("userName", userDTO.getUserName());
         List<AccountDTO> resList = accountService.queryAccountByPaging(paraMap);
-//        return new ResObject.ResObjectBuilder().code(ResObject.SUCCESS).message("").content(resList).build();
-        return resList;
+        return new ResObject.ResObjectBuilder().code(ResObject.SUCCESS).message("").content(resList).build();
     }
 
-    private void printRequest(HttpServletRequest request)
-    {
-        System.out.println("print request:");
-        Map m=request.getParameterMap();
-        Set<Map.Entry<String, String>> set = m.entrySet();
-        for(Map.Entry entry : set)
-        {
-            System.out.println(entry.getKey() + ":" + Arrays.toString((String[])entry.getValue()));
-        }
-    }
+
 }
