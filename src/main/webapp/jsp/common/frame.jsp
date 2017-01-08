@@ -18,7 +18,7 @@
     <script src="js/ie/excanvas.js" cache="false"></script> <![endif]-->
 </head>
 <body>
-<input type="text" id="session" value="<%=((UserDTO)session.getAttribute("userDTO")).getId()%>" />
+<input type="text" id="session" value="<%=((UserDTO)session.getAttribute("userDTO")).getId()%>" hidden="true"/>
 <section class="vbox">
     <header class="bg-dark dk header navbar navbar-fixed-top-xs">
         <div class="navbar-header aside-md"><a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen"
@@ -287,15 +287,15 @@
                 </section>
             </aside>
             <!-- /.aside -->
-            <section>
-                <section id="content" class="vbox">
-                    <%--页--%>
-                    <%--面--%>
-                    <%--内--%>
-                    <%--容--%>
-                </section>
-                <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+
+            <section id="content" class="vbox">
+                <%--页--%>
+                <%--面--%>
+                <%--内--%>
+                <%--容--%>
             </section>
+            <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+
 
             <aside class="bg-light lter b-l aside-md hide" id="notes">
                 <div class="wrapper">Notification</div>
@@ -305,5 +305,6 @@
 </section>
 <script src="js/common/app.v2.js"></script> <!-- Bootstrap --> <!-- App --> <!-- datatables -->
 <script src="js/common/frame.js"></script>
+<script src="js/common/common.js"></script>
 </body>
 </html>
