@@ -21,5 +21,22 @@
                           WHERE user_name = #{userName}) AND data_state = '1'
         LIMIT #{startIndex}, #{pageSize}
     </select>
+    
+    <select id="queryAccountCountByUserName" parameterType="java.lang.String" resultType="java.lang.Integer">
+      select count(1) from account_tbl
+        WHERE owner_id = (SELECT id
+                          FROM user_tbl
+                          WHERE user_name = #{userName}) AND data_state = '1'
+    </select>
+
+    <delete id="delAccountByIDs" parameterType="java.util.List">
+        DELETE FROM account_tbl
+        <where>
+            id in
+            <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </where>
+    </delete>
 
 </mapper>

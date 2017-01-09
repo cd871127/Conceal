@@ -19,30 +19,7 @@ function createTable(columnName) {
     return table;
 }
 
-function fillTableData(table, data) {
-    for (var i in data) {
-        var newTr = $("<tr></tr>");
-        for (var j in data[i]) {
-            var newTd = $("<td></td>");
-            newTd.text(data[i][j]);
-            newTr.append(newTd);
-        }
-        table.append(newTr);
-    }
-    return table;
-}
 
-function objectsToArray(objAttr, objects) {
-    var data = new Array();
-    for (var i in objects) {
-        var tmp = new Array();
-        for (var j in objAttr) {
-            tmp.push(objects[i][objAttr[j]]);
-        }
-        data.push(tmp);
-    }
-    return data;
-}
 
 //查询数据字典
 function queryDataDict(columnName) {
@@ -69,3 +46,5 @@ function queryDataDict(columnName) {
     });
     return dataDict;
 }
+
+

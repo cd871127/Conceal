@@ -11,4 +11,6 @@ import java.util.Map;
  */
 public interface AccountMapper {
     List<AccountDTO> queryAccountByPaging(Map<String, Object> paraMap);
+    int delAccountByIDs(List<String> ids);
+    int queryAccountCountByUserName(String userName);
 }

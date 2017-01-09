@@ -16,6 +16,11 @@
     <script src="js/ie/html5shiv.js" cache="false"></script>
     <script src="js/ie/respond.min.js" cache="false"></script>
     <script src="js/ie/excanvas.js" cache="false"></script> <![endif]-->
+    <style type="text/css">
+    a {
+    cursor:pointer;
+    }
+    </style>
 </head>
 <body>
 <input type="text" id="session" value="<%=((UserDTO)session.getAttribute("userDTO")).getId()%>" hidden="true"/>
@@ -152,7 +157,7 @@
                                         </a>
                                         <ul class="nav lt">
                                             <li>
-                                                <a onclick="clickMenu(this)" style="cursor:pointer">
+                                                <a onclick="clickMenu(this)" >
                                                     <i class="fa fa-angle-right"></i> <span id="acac">账号管理</span>
                                                 </a>
                                             </li>

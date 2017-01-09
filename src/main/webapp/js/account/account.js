@@ -3,6 +3,7 @@
  */
 
 var curPage = 1;
+var pageSize = 10;
 var table;
 var dataDict;
 var columnName = [
@@ -15,6 +16,7 @@ var columnName = [
     '更新日期'
 ];
 var objAttr = [
+    'id',
     'accountName',
     'accountPassWord',
     'accountDesc',
@@ -25,11 +27,87 @@ var objAttr = [
     // 'updateDate'
 ];
 
-function getAccountData() {
-    dataDict=queryDataDict(['account_type']);
-    var pageSize = 10;
-    var startIndex = 0;
-    // var startIndex = (curPage - 1) * pageSize;
+//刷新页面
+function changePage(page) {
+    var dataCount = getAccountDataCount();
+    var maxPage = Math.ceil(dataCount / pageSize);
+    if (page < 1) {
+        page = 1;
+    }
+    if (page > maxPage) {
+        page = maxPage;
+    }
+    curPage = page;
+    showTableFooter(dataCount);
+    getAccountData(page);
+}
+
+function nextPage() {
+    changePage(++curPage);
+}
+function prePage() {
+    changePage(--curPage);
+}
+
+//填充表格
+function fillTableData(table, data) {
+    table.empty();
+    for (var i in data) {
+        var newTr = $("<tr></tr>");
+        for (var j in data[i]) {
+            var newTd;
+            if (j == 0) {
+                newTd = $("<td><input type='checkbox' value='" + data[i][j] + "'></td>");
+            } else {
+                newTd = $("<td></td>");
+                newTd.text(data[i][j]);
+            }
+            newTr.append(newTd);
+        }
+        table.append(newTr);
+    }
+    return table;
+}
+
+//数据转换为数组
+function objectsToArray(objAttr, objects) {
+    var data = new Array();
+    for (var i in objects) {
+        var tmp = new Array();
+        for (var j in objAttr) {
+            tmp.push(objects[i][objAttr[j]]);
+        }
+        data.push(tmp);
+    }
+    return data;
+}
+
+function showTableFooter(dataCount) {
+    var tableFooter = $("#tableFooter");
+    tableFooter.empty();
+    var startIndex = (curPage - 1) * pageSize + 1;
+    var endIndex = curPage * pageSize;
+    if (endIndex > dataCount) {
+        endIndex = dataCount;
+    }
+    var detailCount = $("<div class='col-sm-4 text-center'> <small class='text-muted inline m-t-sm m-b-sm'>showing " + startIndex + "-" + endIndex + " of " + dataCount + " items</small> </div>");
+    var pageListDiv = $("<div class='col-sm-4 text-right text-center-xs'>");
+    var pageList = $("<ul class='pagination pagination-sm m-t-none m-b-none'>");
+    var prePageBtn = $("<li><a onclick='prePage()'><i class='fa fa-chevron-left' ></i></a></li>");
+    var nextPageBtn = $("<li><a onclick='nextPage()'><i class='fa fa-chevron-right'></i></a></li>");
+
+    tableFooter.append(detailCount);
+    tableFooter.append(pageListDiv);
+    pageListDiv.append(pageList);
+    pageList.append(prePageBtn);
+    pageList.append(nextPageBtn);
+}
+
+//查询数据
+function getAccountData(page) {
+    dataDict = queryDataDict(['account_type']);
+    // var startIndex = 0;
+    var startIndex = (page - 1) * pageSize;
     $.ajax({
         cache: true,
         type: "POST",
@@ -64,35 +142,17 @@ function getAccountData() {
     });
 }
 
-
-
-function queryAccount(curPage) {
-    var pageSize = 10;
-    var startIndex = (curPage - 1) * pageSize;
+//查询数据数量
+function getAccountDataCount() {
+    var count = -1;
     $.ajax({
         cache: true,
         type: "POST",
-        url: "account/queryAccount.do",
-        data: {
-            pageSize: pageSize,
-            startIndex: startIndex
-        },
-        dataType: "json",
+        url: "account/queryAccountCount.do",
         async: false,
-        dataFilter: function (data, type) {
-            data = $.parseJSON(data);
-            var content = data.content;
-            for (var i in content) {
-                content[i].createDate = new Date(content[i].createDate);
-                content[i].updateDate = new Date(content[i].updateDate);
-                // content[i].accountType = dataDict.account_type[content[i].accountType];
-            }
-            return JSON.stringify(data);
-        },
         success: function (res) {
             if (res.code == '00') {
-                console.log("123123123");
-                fillTableData(table, objectsToArray(objAttr, res.content));
+                count = res.content;
             }
             else {
                 alert(res.message);
@@ -102,26 +162,108 @@ function queryAccount(curPage) {
             alert("连接失败");
         }
     });
+    return count;
 }
+
+function test() {
+    // delAccount();
+    alert(getAccountDataCount());
+}
+
+//获取选择数据的id
+function getSelectedDataIDs() {
+    var ids = "";
+    $('#accountData').find('input:checkbox').each(function () {
+        if ($(this).prop("checked") == true) {
+            ids += $(this).val() + ",";
+        }
+    });
+    if (ids.charAt(ids.length - 1) == ",")
+        ids = ids.substr(0, ids.length - 1);
+    return ids;
+}
+
+// function queryAccount(curPage) {
+//     var pageSize = 10;
+//     var startIndex = (curPage - 1) * pageSize;
+//     $.ajax({
+//         cache: true,
+//         type: "POST",
+//         url: "account/queryAccount.do",
+//         data: {
+//             pageSize: pageSize,
+//             startIndex: startIndex
+//         },
+//         dataType: "json",
+//         async: false,
+//         dataFilter: function (data, type) {
+//             data = $.parseJSON(data);
+//             var content = data.content;
+//             for (var i in content) {
+//                 content[i].createDate = new Date(content[i].createDate);
+//                 content[i].updateDate = new Date(content[i].updateDate);
+//                 // content[i].accountType = dataDict.account_type[content[i].accountType];
+//             }
+//             return JSON.stringify(data);
+//         },
+//         success: function (res) {
+//             if (res.code == '00') {
+//                 console.log("123123123");
+//                 fillTableData(table, objectsToArray(objAttr, res.content));
+//             }
+//             else {
+//                 alert(res.message);
+//             }
+//         },
+//         error: function (request) {
+//             alert("连接失败");
+//         }
+//     });
+// }
 
 function addAccount() {
 }
+
 function delAccount() {
+    var ids = getSelectedDataIDs();
+    $.ajax({
+        cache: true,
+        type: "POST",
+        url: "account/delAccount.do",
+        data: {
+            ids: ids
+        },
+        dataType: "json",
+        async: false,
+        success: function (res) {
+            if (res.code == '00') {
+                ;
+            }
+            else {
+                alert(res.message);
+            }
+        },
+        error: function (request) {
+            alert("连接失败");
+        }
+    });
+
 }
 function editAccount() {
 }
 
-function changePage(curPage) {
-    $("#tableDiv").children().remove();
-    table = createTable(columnName);
-    table.appendTo("#tableDiv");
-    queryAccount(curPage);
-}
 
-window.onload = function () {
-    dataDict=queryDataDict(['account_type']);
-    changePage(curPage++);
-}
+// function changePage(curPage) {
+//     $("#tableDiv").children().remove();
+//     table = createTable(columnName);
+//     table.appendTo("#tableDiv");
+//     queryAccount(curPage);
+// }
+//
+// window.onload = function () {
+//     dataDict = queryDataDict(['account_type']);
+//     changePage(curPage++);
+// }
 
 //
 // $(this).dataTable({
