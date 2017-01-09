@@ -54,8 +54,7 @@
             <table class="table table-striped m-b-none">
                 <thead>
                 <tr>
-                    <th width="5%"><input type="checkbox"></th>
-                    <th width="15%">账号</th>
+                    <th width="20%">账号</th>
                     <th width="25%">密码</th>
                     <th width="25%">描述</th>
                     <th width="15%">链接</th>
@@ -69,25 +68,25 @@
         <footer class="panel-footer">
             <div id="tableFooter" class="row">
                 <%--<div class="col-sm-4 hidden-xs">--%>
-                    <%--<select class="input-sm form-control input-s-sm inline">--%>
-                        <%--<option value="0">Bulk action</option>--%>
-                        <%--<option value="1">Delete selected</option>--%>
-                        <%--<option value="2">Bulk edit</option>--%>
-                        <%--<option value="3">Export</option>--%>
-                    <%--</select>--%>
-                    <%--<button class="btn btn-sm btn-default">Apply</button>--%>
+                <%--<select class="input-sm form-control input-s-sm inline">--%>
+                <%--<option value="0">Bulk action</option>--%>
+                <%--<option value="1">Delete selected</option>--%>
+                <%--<option value="2">Bulk edit</option>--%>
+                <%--<option value="3">Export</option>--%>
+                <%--</select>--%>
+                <%--<button class="btn btn-sm btn-default">Apply</button>--%>
                 <%--</div>--%>
 
                 <%--<div class="col-sm-4 text-right text-center-xs">--%>
 
-                        <%--<li><a onclick="prePage()"><i class="fa fa-chevron-left" ></i></a></li>--%>
-                        <%--<li><a onclick="changePage(1)">1</a></li>--%>
-                        <%--<li><a onclick="changePage(2)">2</a></li>--%>
-                        <%--<li><a >3</a></li>--%>
-                        <%--<li><a >4</a></li>--%>
-                        <%--<li><a >5</a></li>--%>
-                        <%--<li><a onclick="nextPage()"><i class="fa fa-chevron-right"></i></a></li>--%>
-                    <%--</ul>--%>
+                <%--<li><a onclick="prePage()"><i class="fa fa-chevron-left" ></i></a></li>--%>
+                <%--<li><a onclick="changePage(1)">1</a></li>--%>
+                <%--<li><a onclick="changePage(2)">2</a></li>--%>
+                <%--<li><a >3</a></li>--%>
+                <%--<li><a >4</a></li>--%>
+                <%--<li><a >5</a></li>--%>
+                <%--<li><a onclick="nextPage()"><i class="fa fa-chevron-right"></i></a></li>--%>
+                <%--</ul>--%>
                 <%--</div>--%>
             </div>
         </footer>

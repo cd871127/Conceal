@@ -46,5 +46,3 @@ function queryDataDict(columnName) {
     });
     return dataDict;
 }
-
-

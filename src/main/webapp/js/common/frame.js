@@ -13,17 +13,16 @@ function clickMenu(e)
 {
     var a=$(e).children('span');
     var b=a.attr('id');
-        $("#content").load('jsp/account/account.jsp',1,function () {
-            $.getScript('js/account/account.js',function () {
-                changePage(1);
+    $("#content").load('jsp/account/account.jsp',1,function () {
+        $.getScript('js/account/account.js',function () {
+            changePage(1);
             // changePage(curPage);
             // $("#content").refresh();
         });
-});
+    });
 }
 
 function initPage()
 {
 
 }
-
