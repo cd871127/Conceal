@@ -20,4 +20,13 @@ public class AccountService {
         return accountMapper.queryAccountByPaging(paraMap);
     }
 
+    public int delAccountByIDs(List<String> ids)
+    {
+        return accountMapper.delAccountByIDs(ids);
+    }
+    public int queryAccountCountByUserName(String userName)
+    {
+        return accountMapper.queryAccountCountByUserName(userName);
+    }
+
 }

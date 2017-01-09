@@ -11,11 +11,12 @@
 
 function clickMenu(e)
 {
-    // var a=$(e).children('span');
-    // var b=a.attr('id');
+    var a=$(e).children('span');
+    var b=a.attr('id');
+    alert(b);
         $("#content").load('jsp/account/account.jsp',1,function () {
             $.getScript('js/account/account.js',function () {
-                getAccountData();
+                changePage(1);
             // changePage(curPage);
             // $("#content").refresh();
         });
@@ -26,3 +27,4 @@ function initPage()
 {
 
 }
+

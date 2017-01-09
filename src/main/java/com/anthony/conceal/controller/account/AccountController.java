@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Anthony on 2017/1/1.
@@ -35,7 +38,25 @@ public class AccountController {
         paraMap.put("startIndex", startIndex);
         paraMap.put("userName", userDTO.getUserName());
         List<AccountDTO> resList = accountService.queryAccountByPaging(paraMap);
+
         return new ResObject.ResObjectBuilder().code(ResObject.SUCCESS).message("").content(resList).build();
+    }
+
+    @RequestMapping(value = "queryAccountCount.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ResObject queryAccountCount(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        UserDTO userDTO = (UserDTO) session.getAttribute("userDTO");
+        int dataCount = accountService.queryAccountCountByUserName(userDTO.getUserName());
+        return new ResObject.ResObjectBuilder().code(ResObject.SUCCESS).message("").content(dataCount).build();
+    }
+
+    @RequestMapping(value = "delAccount.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ResObject delAccount(HttpServletRequest request) {
+        List<String> ids = Arrays.asList(request.getParameter("ids").split(","));
+        int count = accountService.delAccountByIDs(ids);
+        return new ResObject.ResObjectBuilder().code(ResObject.SUCCESS).message("").content(count).build();
     }
 
 

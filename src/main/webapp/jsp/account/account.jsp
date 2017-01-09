@@ -54,7 +54,8 @@
             <table class="table table-striped m-b-none">
                 <thead>
                 <tr>
-                    <th width="20%">账号</th>
+                    <th width="5%"><input type="checkbox"></th>
+                    <th width="15%">账号</th>
                     <th width="25%">密码</th>
                     <th width="25%">描述</th>
                     <th width="15%">链接</th>
@@ -65,6 +66,8 @@
                 </tbody>
             </table>
         </div>
+        <button id="prePage" onclick="prePage()">上一页</button>
+        <button id="nextPage" onclick="nextPage()">下一页</button>
         <footer class="panel-footer">
             <div class="row">
                 <div class="col-sm-4 hidden-xs">
@@ -79,13 +82,13 @@
                 <div class="col-sm-4 text-center"> <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small> </div>
                 <div class="col-sm-4 text-right text-center-xs">
                     <ul class="pagination pagination-sm m-t-none m-b-none">
-                        <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+                        <li><a onclick="prePage()"><i class="fa fa-chevron-left" ></i></a></li>
+                        <li><a onclick="changePage(1)">1</a></li>
+                        <li><a onclick="changePage(2)">2</a></li>
+                        <li><a >3</a></li>
+                        <li><a >4</a></li>
+                        <li><a >5</a></li>
+                        <li><a onclick="nextPage()"><i class="fa fa-chevron-right"></i></a></li>
                     </ul>
                 </div>
             </div>
