@@ -96,6 +96,7 @@ function fillTableData(table, data) {
         }
         newTd = $("<td><button class='btn btn-sm btn-default' onclick='editAccount(" + id + ")'>Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class='btn btn-sm btn-default' onclick='delAccount(" + id + ")'>Del</button></td>");
         newTr.append(newTd);
+        newTr.attr("id", "data" + id);
         table.append(newTr);
     }
     return table;
@@ -305,5 +306,39 @@ function delAccount(ids) {
 }
 
 function editAccount(id) {
-    alert(id);
+    var tr = "#data" + id;
+    var trChild = $(tr).children();
+    trChild.each(
+        function (index) {
+            if (index == 0) {
+                $(this).attr("value", id);
+                $(this).empty();
+                var newBtn = $("<button class='btn btn-sm btn-default' onclick='updateAccount("+tr+")'>OK</button>");
+                $(this).append(newBtn);
+            }
+            else if (index == trChild.length - 1) {
+
+            }
+            else {
+                var text = $(this).text();
+                $(this).empty();
+                var inp = $("<input type='text' value='" + text + "'>");
+                $(this).append(inp);
+            }
+        }
+    );
+}
+
+function updateAccount(tr) {
+    var id;
+    console.log(tr);
+    // var trChild = $(tr).children();
+    // trChild.each(
+    //     function (index) {
+    //         if (index == 0) {
+    //             id=$(this).attr("value");
+    //             console.log(id);
+    //         }
+    //     }
+    // );
 }
