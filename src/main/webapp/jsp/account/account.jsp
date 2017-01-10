@@ -16,18 +16,12 @@
     </div>
     <section class="panel panel-default">
         <header class="panel-heading"> 账号信息 <i class="fa fa-info-sign text-muted"
-                                                     data-toggle="tooltip" data-placement="bottom"
-                                                     data-title="ajax to load the data."></i>
+                                               data-toggle="tooltip" data-placement="bottom"
+                                               data-title="ajax to load the data."></i>
         </header>
         <div class="row text-sm wrapper">
             <div class="col-sm-5 m-b-xs">
-                <select class="input-sm form-control input-s-sm inline">
-                    <option value="0">Bulk action</option>
-                    <option value="1">Delete selected</option>
-                    <option value="2">Bulk edit</option>
-                    <option value="3">Export</option>
-                </select>
-                <button class="btn btn-sm btn-default">Apply</button>
+                <button class="btn btn-sm btn-default" onclick="addData()">Add</button>
             </div>
             <div class="col-sm-4 m-b-xs">
                 <div class="btn-group" data-toggle="buttons">
@@ -47,18 +41,20 @@
                     <input type="text" class="input-sm form-control" placeholder="Search">
                     <span class="input-group-btn">
                     <button class="btn btn-sm btn-default" type="button">Go!</button>
-                    </span> </div>
+                    </span></div>
             </div>
         </div>
         <div class="table-responsive">
             <table class="table table-striped m-b-none">
                 <thead>
                 <tr>
-                    <th width="20%">账号</th>
-                    <th width="25%">密码</th>
-                    <th width="25%">描述</th>
+                    <th width="5%"><input id="mainCheckBox" type="checkbox"></th>
+                    <th width="15%">账号</th>
+                    <th width="15%">密码</th>
+                    <th width="15%">描述</th>
                     <th width="15%">链接</th>
                     <th width="15%">类型</th>
+                    <th width="15%">操作</th>
                 </tr>
                 </thead>
                 <tbody id="accountData">
@@ -67,15 +63,9 @@
         </div>
         <footer class="panel-footer">
             <div id="tableFooter" class="row">
-                <%--<div class="col-sm-4 hidden-xs">--%>
-                <%--<select class="input-sm form-control input-s-sm inline">--%>
-                <%--<option value="0">Bulk action</option>--%>
-                <%--<option value="1">Delete selected</option>--%>
-                <%--<option value="2">Bulk edit</option>--%>
-                <%--<option value="3">Export</option>--%>
-                <%--</select>--%>
-                <%--<button class="btn btn-sm btn-default">Apply</button>--%>
-                <%--</div>--%>
+                <div id="footerBtn" class="col-sm-4 hidden-xs">
+                    <button class="btn btn-sm btn-default" onclick="buklDel()">Bulk Delete</button>
+                </div>
 
                 <%--<div class="col-sm-4 text-right text-center-xs">--%>
 

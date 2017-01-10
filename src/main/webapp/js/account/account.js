@@ -27,43 +27,75 @@ var objAttr = [
     // 'updateDate'
 ];
 
+//绑定回车
+function bindEnter(element) {
+    $("body").keydown(function () {
+        if (event.keyCode == "13") {//keyCode=13是回车键
+            element.click();
+        }
+    });
+}
+
+function buklDel() {
+    var ids = getSelectedDataIDs();
+    delAccount(ids);
+    $("#mainCheckBox").attr("checked", "unchecked");
+}
+
+function addData() {
+    $(".btn.btn-sm.btn-default").attr({"disabled": "disabled"});
+    buildAccountForm();
+}
+
+
 //刷新页面
 function changePage(page) {
     var dataCount = getAccountDataCount();
-    var maxPage = Math.ceil(dataCount / pageSize);
-    if (page < 1) {
-        page = 1;
+    dataDict = queryDataDict(['account_type']);
+    $("#accountData").empty();
+    if (dataCount == 0) {
+        $("#tableFooter").hide();
     }
-    if (page > maxPage) {
-        page = maxPage;
+    else {
+        $("#tableFooter").show();
+        var maxPage = Math.ceil(dataCount / pageSize);
+        if (page < 1) {
+            page = 1;
+        }
+        if (page > maxPage) {
+            page = maxPage;
+        }
+        curPage = page;
+        showTableFooter(dataCount);
+        getAccountData(page);
     }
-    curPage = page;
-    showTableFooter(dataCount);
-    getAccountData(page);
 }
 
 function nextPage() {
     changePage(++curPage);
 }
+
 function prePage() {
     changePage(--curPage);
 }
 
 //填充表格
 function fillTableData(table, data) {
-    table.empty();
     for (var i in data) {
         var newTr = $("<tr></tr>");
         for (var j in data[i]) {
             var newTd;
             if (j == 0) {
                 newTd = $("<td><input type='checkbox' value='" + data[i][j] + "'></td>");
+                var id = data[i][j];
             } else {
                 newTd = $("<td></td>");
                 newTd.text(data[i][j]);
             }
             newTr.append(newTd);
         }
+        newTd = $("<td><button class='btn btn-sm btn-default' onclick='editAccount(" + id + ")'>Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class='btn btn-sm btn-default' onclick='delAccount(" + id + ")'>Del</button></td>");
+        newTr.append(newTd);
         table.append(newTr);
     }
     return table;
@@ -84,14 +116,15 @@ function objectsToArray(objAttr, objects) {
 
 function showTableFooter(dataCount) {
     var tableFooter = $("#tableFooter");
-    tableFooter.empty();
+    tableFooter.children('#detailCount').remove();
+    tableFooter.children('#pageListDiv').remove();
     var startIndex = (curPage - 1) * pageSize + 1;
     var endIndex = curPage * pageSize;
     if (endIndex > dataCount) {
         endIndex = dataCount;
     }
-    var detailCount = $("<div class='col-sm-4 text-center'> <small class='text-muted inline m-t-sm m-b-sm'>showing " + startIndex + "-" + endIndex + " of " + dataCount + " items</small> </div>");
-    var pageListDiv = $("<div class='col-sm-4 text-right text-center-xs'>");
+    var detailCount = $("<div id='detailCount' class='col-sm-4 text-center'> <small class='text-muted inline m-t-sm m-b-sm'>showing " + startIndex + "-" + endIndex + " of " + dataCount + " items</small> </div>");
+    var pageListDiv = $("<div id='pageListDiv' class='col-sm-4 text-right text-center-xs'>");
     var pageList = $("<ul class='pagination pagination-sm m-t-none m-b-none'>");
     var prePageBtn = $("<li><a onclick='prePage()'><i class='fa fa-chevron-left' ></i></a></li>");
     var nextPageBtn = $("<li><a onclick='nextPage()'><i class='fa fa-chevron-right'></i></a></li>");
@@ -105,8 +138,6 @@ function showTableFooter(dataCount) {
 
 //查询数据
 function getAccountData(page) {
-    dataDict = queryDataDict(['account_type']);
-    // var startIndex = 0;
     var startIndex = (page - 1) * pageSize;
     $.ajax({
         cache: true,
@@ -183,49 +214,73 @@ function getSelectedDataIDs() {
     return ids;
 }
 
-// function queryAccount(curPage) {
-//     var pageSize = 10;
-//     var startIndex = (curPage - 1) * pageSize;
-//     $.ajax({
-//         cache: true,
-//         type: "POST",
-//         url: "account/queryAccount.do",
-//         data: {
-//             pageSize: pageSize,
-//             startIndex: startIndex
-//         },
-//         dataType: "json",
-//         async: false,
-//         dataFilter: function (data, type) {
-//             data = $.parseJSON(data);
-//             var content = data.content;
-//             for (var i in content) {
-//                 content[i].createDate = new Date(content[i].createDate);
-//                 content[i].updateDate = new Date(content[i].updateDate);
-//                 // content[i].accountType = dataDict.account_type[content[i].accountType];
-//             }
-//             return JSON.stringify(data);
-//         },
-//         success: function (res) {
-//             if (res.code == '00') {
-//                 console.log("123123123");
-//                 fillTableData(table, objectsToArray(objAttr, res.content));
-//             }
-//             else {
-//                 alert(res.message);
-//             }
-//         },
-//         error: function (request) {
-//             alert("连接失败");
-//         }
-//     });
-// }
-
-function addAccount() {
+function buildAccountForm() {
+    var table = $("#accountData");
+    var newTr = $("<tr></tr>");
+    var newTd = $("<td></td>");
+    var newBtn = $("<button class='btn btn-sm btn-default' onclick='addAccount()'>OK</button>");
+    newTd.append(newBtn);
+    // $("body").keydown(function () {
+    //     if (event.keyCode == "13") {//keyCode=13是回车键
+    //         newBtn.click();
+    //     }
+    // });
+//     var newTd = $("<td><a class='active' onclick='addAccount()'><i class='fa fa-check text-success text-active'></i></a></td>");
+    newTr.append(newTd);
+    newTd = $("<td><input id='accountName' type='text' class='input-sm form-control'></td>");
+    newTr.append(newTd);
+    newTd = $("<td><input id='accountPassWord' type='text' class='input-sm form-control'></td>");
+    newTr.append(newTd);
+    newTd = $("<td><input id='accountDesc' type='text' class='input-sm form-control'></td>");
+    newTr.append(newTd);
+    newTd = $("<td><input id='accountUrl' type='text' class='input-sm form-control'></td>");
+    newTr.append(newTd);
+// &nbsp;&nbsp;&nbsp;&nbsp;<a class='active' onclick='cancelAddAccount()'><i class='fa fa-times text-danger text-active'></i></a>
+    newTd = $("<td><select id='accountType' class='input-sm form-control input-s-sm inline'></select></td>");
+    for (var key in dataDict.account_type) {
+        newTd.find('#accountType').append("<option value='" + key + "'>" + dataDict.account_type[key] + "</option>");
+    }
+    newTr.append(newTd);
+    newTd = $("<td><button class='btn btn-sm btn-default' onclick='cancelAddAccount()'>Cancel</button></td>");
+    newTr.append(newTd);
+    table.prepend(newTr);
 }
 
-function delAccount() {
-    var ids = getSelectedDataIDs();
+function cancelAddAccount() {
+    changePage(curPage);
+    $(".btn.btn-sm.btn-default").removeAttr("disabled");
+}
+
+function addAccount() {
+    $.ajax({
+        cache: true,
+        type: "POST",
+        url: "account/addAccount.do",
+        data: {
+            accountName: $("#accountName").val(),
+            accountPassWord: $("#accountPassWord").val(),
+            accountDesc: $("#accountDesc").val(),
+            accountUrl: $("#accountUrl").val(),
+            accountType: $("#accountType").val()
+        },
+        dataType: "json",
+        async: false,
+        success: function (res) {
+            if (res.code == '00') {
+                changePage(curPage);
+                $(".btn.btn-sm.btn-default").removeAttr("disabled");
+            }
+            else {
+                alert(res.message);
+            }
+        },
+        error: function (request) {
+            alert("连接失败");
+        }
+    });
+}
+
+function delAccount(ids) {
     $.ajax({
         cache: true,
         type: "POST",
@@ -237,7 +292,7 @@ function delAccount() {
         async: false,
         success: function (res) {
             if (res.code == '00') {
-                ;
+                changePage(curPage);
             }
             else {
                 alert(res.message);
@@ -247,76 +302,8 @@ function delAccount() {
             alert("连接失败");
         }
     });
-
-}
-function editAccount() {
 }
 
-
-// function changePage(curPage) {
-//     $("#tableDiv").children().remove();
-//     table = createTable(columnName);
-//     table.appendTo("#tableDiv");
-//     queryAccount(curPage);
-// }
-//
-// window.onload = function () {
-//     dataDict = queryDataDict(['account_type']);
-//     changePage(curPage++);
-// }
-
-//
-// $(this).dataTable({
-//     "bProcessing": true,
-//     "sAjaxSource": "js/data/datatable.json",
-//     "sDom": "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
-//     "sPaginationType": "full_numbers",
-//     "aoColumns": [{"mData": "engine"}, {"mData": "browser"}, {"mData": "platform"}, {"mData": "version"}, {"mData": "grade"}]
-// });
-
-// $("#resTable").DataTable({
-//     "bProcessing": true,
-//     "sAjaxSource": "js/data/datatable.json",
-//     "sDom": "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
-//     "sPaginationType": "full_numbers",
-//     "aoColumns": [{"mData": "engine"}, {"mData": "browser"}, {"mData": "platform"}, {"mData": "version"}, {"mData": "grade"}]
-// });
-
-// $("#resTable").dataTable({
-//     bProcessing: true,
-//     sDom: "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
-//     sPaginationType: "full_numbers",
-//     sAjaxSource:"account/queryAccount.do",
-//     sServerMethod:"POST",
-//     // "fnServerData":{
-//
-//     "fnServerParams": function( aoData )
-//     {
-//         aoData.push(
-//             {"name":"pageSize","value":"1000"},
-//             {"name":"startIndex","value":"0"}
-//         )
-//     },
-//     // fnServerParams:{
-//     //         pageSize:1000,
-//     //         startIndex:0
-//     //     },
-//     // },
-//     "aoColumns": [{"mData": "engine"}, {"mData": "browser"}, {"mData": "platform"}, {"mData": "version"}, {"mData": "grade"}]
-// });
-
-
-// $("#tableid").DataTable({
-//     ajax:{
-//         url:"data.action",
-//         type:"POST",
-//         data:{
-//             beginDate:"2016-04-18",
-//             endDate:"2016-04-21"
-//         }
-//     },
-//     columns:[
-//         {data:"name"},
-//         {data:"age"}
-//     ]
-// });
+function editAccount(id) {
+    alert(id);
+}

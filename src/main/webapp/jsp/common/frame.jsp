@@ -15,7 +15,8 @@
     <!--[if lt IE 9]>
     <script src="js/ie/html5shiv.js" cache="false"></script>
     <script src="js/ie/respond.min.js" cache="false"></script>
-    <script src="js/ie/excanvas.js" cache="false"></script> <![endif]-->
+    <script src="js/ie/excanvas.js" cache="false"></script>
+    <![endif]-->
     <style type="text/css">
     a {
     cursor:pointer;

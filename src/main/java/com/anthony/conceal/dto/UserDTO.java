@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Anthony on 2016/12/22.
  */
 public class UserDTO {
-    private int id;
+    private String id;
     private String userName;
     private String passWord;
     private String eMail;
@@ -17,11 +17,11 @@ public class UserDTO {
     private Date updateDate;
     private String dataState;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

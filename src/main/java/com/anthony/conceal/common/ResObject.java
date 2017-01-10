@@ -11,6 +11,7 @@ public class ResObject {
     public final static String SUCCESS = "00";
     public final static String LOGIN_FAIL = "01";
     public final static String REGISTER_FAIL = "02";
+    public final static String ADD_ACCOUNT_FAIL = "03";
 
     private ResObject(ResObjectBuilder builder) {
         code = builder.code;

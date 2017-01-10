@@ -9,9 +9,9 @@
 // });
 // }
 
-function clickMenu(e)
+function clickMenu(element)
 {
-    var a=$(e).children('span');
+    var a=$(element).children('span');
     var b=a.attr('id');
     $("#content").load('jsp/account/account.jsp',1,function () {
         $.getScript('js/account/account.js',function () {

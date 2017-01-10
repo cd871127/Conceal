@@ -19,11 +19,13 @@
         WHERE owner_id = (SELECT id
                           FROM user_tbl
                           WHERE user_name = #{userName}) AND data_state = '1'
+        ORDER BY update_date DESC
         LIMIT #{startIndex}, #{pageSize}
     </select>
-    
+
     <select id="queryAccountCountByUserName" parameterType="java.lang.String" resultType="java.lang.Integer">
-      select count(1) from account_tbl
+        SELECT count(1)
+        FROM account_tbl
         WHERE owner_id = (SELECT id
                           FROM user_tbl
                           WHERE user_name = #{userName}) AND data_state = '1'
@@ -38,5 +40,10 @@
             </foreach>
         </where>
     </delete>
+
+    <insert id="addAccount" parameterType="accountDTO">
+        INSERT INTO account_tbl (owner_id, account_name, account_password, account_desc, account_url, account_type)
+        VALUES (#{ownerId}, #{accountName}, #{accountPassWord}, #{accountDesc}, #{accountUrl}, #{accountType})
+    </insert>
 
 </mapper>

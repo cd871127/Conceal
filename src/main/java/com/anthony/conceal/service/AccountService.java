@@ -28,5 +28,9 @@ public class AccountService {
     {
         return accountMapper.queryAccountCountByUserName(userName);
     }
+    public int addAccount(AccountDTO accountDTO)
+    {
+        return accountMapper.addAccount(accountDTO);
+    }
 
 }

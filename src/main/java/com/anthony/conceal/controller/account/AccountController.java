@@ -59,5 +59,18 @@ public class AccountController {
         return new ResObject.ResObjectBuilder().code(ResObject.SUCCESS).message("").content(count).build();
     }
 
-
+    @RequestMapping(value = "addAccount.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ResObject addAccount(AccountDTO accountDTO, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        UserDTO userDTO = (UserDTO) session.getAttribute("userDTO");
+        String ownerId = userDTO.getId();
+        accountDTO.setOwnerId(ownerId);
+        ResObject resObject;
+        if (1 == accountService.addAccount(accountDTO))
+            resObject = new ResObject.ResObjectBuilder().code(ResObject.SUCCESS).message("").content(null).build();
+        else
+            resObject = new ResObject.ResObjectBuilder().code(ResObject.ADD_ACCOUNT_FAIL).message("").content(null).build();
+        return resObject;
+    }
 }
