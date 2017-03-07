@@ -22,11 +22,12 @@ public class Main extends HttpServlet {
     }
 
     public static void main(String[] args) {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:config/spring-mybatis.xml");
-        commonService = ctx.getBean(CommonService.class);
-
-        Map<String, Map<String, String>> m = commonService.getDictMapByColumnName(new ArrayList<String>(Arrays.asList("data_state", "account_type")));
-        System.out.println(m);
+//        ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:config/spring-mybatis.xml");
+//        commonService = ctx.getBean(CommonService.class);
+//
+//        Map<String, Map<String, String>> m = commonService.getDictMapByColumnName(new ArrayList<String>(Arrays.asList("data_state", "account_type")));
+//        System.out.println(m);
+        System.out.println("123");
 //        http://www.mycodes.net/154/8985.htm
 //        http://datatables.club/upgrade/1.10-convert.html
     }

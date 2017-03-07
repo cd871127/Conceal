@@ -11,7 +11,7 @@ buildscript {
         maven {
             url "http://maven.aliyun.com/nexus/content/groups/public"
         }
-        jcenter()
+//        jcenter()
     }
     dependencies {
         classpath 'org.akhikhl.gretty:gretty:+'
@@ -67,7 +67,7 @@ dependencies {
 }
 
 gretty {
-    port = 8888
+//    port = 8888
     contextPath = "/${project.name}"
     servletContainer = 'tomcat8' // or tomcat7
     scanInterval = 1
@@ -75,9 +75,12 @@ gretty {
 //    enableNaming = true
 }
 
-mainClassName = "com.anthony.conceal.Main"
+//application{
+    mainClassName = "com.anthony.conceal.Main"
+//}
 
-println(mainClassName)
+
+
 
 
 
