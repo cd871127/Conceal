@@ -1,5 +1,6 @@
 package io.github.cd871127.conceal.thread;
 
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -15,5 +16,6 @@ public class WaitNotify implements Runnable {
         Condition condition1=lock.newCondition();
         Condition condition2=lock.newCondition();
         System.out.println(condition1==condition2);
+
     }
 }
