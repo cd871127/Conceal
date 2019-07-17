@@ -17,3 +17,5 @@ https://blog.csdn.net/chejinqiang/article/details/80003868
 
 mybatis 注册别名，没有过滤内部类，匿名类，接口
 如果存在两个匿名类，getSimpleName会拿到空串，注册到Map中，会报错
+ 
+ 
