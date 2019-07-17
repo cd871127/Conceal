@@ -16,5 +16,6 @@ public class DynamicProxyMain {
                 dynamicProxy
         );
         helloProxy.sayHello();
+        helloProxy.sayHi();
     }
 }

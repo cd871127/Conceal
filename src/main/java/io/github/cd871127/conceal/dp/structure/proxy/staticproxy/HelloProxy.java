@@ -17,6 +17,11 @@ public class HelloProxy implements Hello {
         after();
     }
 
+    @Override
+    public void sayHi() {
+
+    }
+
     private void before() {
         System.out.println("Before");
     }

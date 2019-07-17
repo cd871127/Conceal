@@ -8,5 +8,6 @@ public class CGLibProxyMain {
         CGLibProxy cgLibProxy = new CGLibProxy();
         GoodBye goodBye = (GoodBye) Enhancer.create(GoodBye.class, cgLibProxy);
         goodBye.sayGoodBye();
+        goodBye.sayBey();
     }
 }
