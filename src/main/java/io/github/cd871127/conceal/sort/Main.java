@@ -4,9 +4,8 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-
-        testSingleSort();
-//        testPerformance();
+//        testSingleSort();
+        testPerformance();
     }
 
     private static int[] data() {
@@ -27,7 +26,7 @@ public class Main {
     }
 
     private static void testSingleSort() {
-        Sort sort = SortFactory.getSort(SortFactory.SortType.QUICK_SORT);
+        Sort sort = SortFactory.getSort(SortFactory.SortType.HEAP_SORT);
         int[] arr = {5, 2, 7, 9, 1, 0, 11, 3, 1};
 //        arr = data();
         sort.sort(arr);
@@ -52,13 +51,13 @@ public class Main {
 
     private static boolean check(int[] arr, int[] ori) {
         for (int i = 0; i != arr.length - 1; ++i) {
-            if (arr[i] > arr[i + 1])
+            if (arr[i] > arr[i + 1]) {
                 return false;
+            }
         }
         if (new HashSet<>(Collections.singletonList(arr)).size() != new HashSet<>(Collections.singletonList(ori)).size()) {
             return false;
         }
-
         return true;
     }
 }

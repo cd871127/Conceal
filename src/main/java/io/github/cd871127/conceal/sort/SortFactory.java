@@ -18,6 +18,9 @@ public class SortFactory {
             case INSERTION_SORT:
                 sort = new InsertionSort();
                 break;
+            case HEAP_SORT:
+                sort = new HeapSort();
+                break;
             default:
                 sort = new QuickSort();
         }
@@ -29,6 +32,6 @@ public class SortFactory {
     }
 
     public enum SortType {
-        QUICK_SORT, BUBBLE_SORT, SELECTION_SORT, INSERTION_SORT
+        QUICK_SORT, BUBBLE_SORT, SELECTION_SORT, INSERTION_SORT, HEAP_SORT
     }
 }
