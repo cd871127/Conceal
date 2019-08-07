@@ -18,7 +18,11 @@
 2. 标记清除
 3. 标记整理
 
-server client参数 GC不一样的
+参数server:优先选择串行GC client:优先选择并行GC
+
+parNew parOld 标记整理
+
+
 
 ##### CMS
 1. 初始标记，标记GCRoots直接可达的对象，STW；
@@ -104,7 +108,16 @@ lock：
 轻量锁：自旋
 重量锁：阻塞
 
+#### 规避死锁
+锁排序
+锁粗化
+超时
+
 ## 集合类
+
+### HashMap
+
+### TreeSet
 
 
 
